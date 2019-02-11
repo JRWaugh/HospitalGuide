@@ -35,14 +35,12 @@ public class ActivityHospitalSearch extends AppCompatActivity {
 
             switch(parent.getId()){
                 case R.id.spTreatment:
-                    treatmentSelected = parent.getItemAtPosition(pos).toString();
                     break;
                 case R.id.spCities:
                     suburbs.setAdapter(new ArrayAdapter<>(view.getContext(), android.R.layout.simple_spinner_dropdown_item, suburbGetter(parent.getItemAtPosition(pos).toString())));
                     suburbs.setOnItemSelectedListener(new MyItemListener());
                     break;
                 case R.id.spRegions:
-                    regionSelected = parent.getItemAtPosition(pos).toString();
                     break;
             }
         }
