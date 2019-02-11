@@ -13,8 +13,18 @@
     </string-array>
 
     <string-array name="espooSuburbs">
-        <item>Pasila</item>
-        <item>Kamppi</item>
-        <item>Töölö</item>
+        <item>Leppävaara</item>
+        <item>Kilo</item>
+        <item>Espoon Keskus</item>
+    </string-array>
+
+    <string-array name="vantaaSuburbs">
+        <item>Tikkurila</item>")
+        <item>Hakunila</item>
+        <item>Koivukylä</item>
+        <item>Korso</item>
+        <item>Aviapolis</item>
+        <item>Myyrmäki</item>
+        <item>Kivistö</item>
     </string-array>
 </resources>

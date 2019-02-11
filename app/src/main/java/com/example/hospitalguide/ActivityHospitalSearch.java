@@ -18,9 +18,6 @@ public class ActivityHospitalSearch extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Resources res = getResources();
-        String[] cities = res.getStringArray(R.array.cities);
-
         Button search = findViewById(R.id.btnSearch);
         search.setOnClickListener(new MyClick());
 
@@ -29,7 +26,7 @@ public class ActivityHospitalSearch extends AppCompatActivity {
         treatment.setOnItemSelectedListener(new MyItemListener());
 
         Spinner locations = findViewById(R.id.spCities);
-        locations.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, cities));
+        locations.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.cities)));
         locations.setOnItemSelectedListener(new MyItemListener());
     }
 
@@ -43,8 +40,12 @@ public class ActivityHospitalSearch extends AppCompatActivity {
                     treatmentSelected = parent.getItemAtPosition(pos).toString();
                     break;
                 case R.id.spCities:
-                    Locations.getInstance().setSelectedCity(parent.getItemAtPosition(pos).toString());
-                    suburbs.setAdapter(new ArrayAdapter<>(view.getContext(), android.R.layout.simple_spinner_dropdown_item, Locations.getInstance().getSelectedSuburbs()));
+                    if(parent.getItemAtPosition(pos).toString().equals("Helsinki"))
+                        suburbs.setAdapter(new ArrayAdapter<>(view.getContext(), android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.helsinkiSuburbs)));
+                    else if (parent.getItemAtPosition(pos).toString().equals("Espoo"))
+                        suburbs.setAdapter(new ArrayAdapter<>(view.getContext(), android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.espooSuburbs)));
+                    else
+                        suburbs.setAdapter(new ArrayAdapter<>(view.getContext(), android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.vantaaSuburbs)));
                     suburbs.setOnItemSelectedListener(new MyItemListener());
                     break;
                 case R.id.spRegions:
@@ -59,10 +60,14 @@ public class ActivityHospitalSearch extends AppCompatActivity {
     private class MyClick implements View.OnClickListener {
         @Override
         public void onClick(View view){
+            Spinner treatment = findViewById(R.id.spTreatment);
+            Spinner locations = findViewById(R.id.spCities);
+            Spinner suburbs = findViewById(R.id.spRegions);
+
             Intent intent = new Intent(view.getContext(), ActivityHospitalList.class);
-            intent.putExtra("treatment", treatmentSelected);
-            intent.putExtra("city", Locations.getInstance().getSelectedCity());
-            intent.putExtra("region", regionSelected);
+            intent.putExtra("treatment", treatment.getSelectedItem().toString());
+            intent.putExtra("city", locations.getSelectedItem().toString());
+            intent.putExtra("region", suburbs.getSelectedItem().toString());
             startActivity(intent);
         }
     }
