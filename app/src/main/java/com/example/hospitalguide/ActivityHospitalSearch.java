@@ -11,8 +11,6 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 public class ActivityHospitalSearch extends AppCompatActivity {
-    private String treatmentSelected;
-    private String regionSelected;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,12 +38,7 @@ public class ActivityHospitalSearch extends AppCompatActivity {
                     treatmentSelected = parent.getItemAtPosition(pos).toString();
                     break;
                 case R.id.spCities:
-                    if(parent.getItemAtPosition(pos).toString().equals("Helsinki"))
-                        suburbs.setAdapter(new ArrayAdapter<>(view.getContext(), android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.helsinkiSuburbs)));
-                    else if (parent.getItemAtPosition(pos).toString().equals("Espoo"))
-                        suburbs.setAdapter(new ArrayAdapter<>(view.getContext(), android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.espooSuburbs)));
-                    else
-                        suburbs.setAdapter(new ArrayAdapter<>(view.getContext(), android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.vantaaSuburbs)));
+                    suburbs.setAdapter(new ArrayAdapter<>(view.getContext(), android.R.layout.simple_spinner_dropdown_item, suburbGetter(parent.getItemAtPosition(pos).toString())));
                     suburbs.setOnItemSelectedListener(new MyItemListener());
                     break;
                 case R.id.spRegions:
@@ -70,6 +63,16 @@ public class ActivityHospitalSearch extends AppCompatActivity {
             intent.putExtra("region", suburbs.getSelectedItem().toString());
             startActivity(intent);
         }
+    }
+
+    private String[] suburbGetter(String input){
+        if (input.equals("Helsinki"))
+            return getResources().getStringArray(R.array.helsinkiSuburbs);
+        else if (input.equals("Espoo"))
+            return getResources().getStringArray(R.array.espooSuburbs);
+        else
+            return getResources().getStringArray(R.array.vantaaSuburbs);
+
     }
 
 }
