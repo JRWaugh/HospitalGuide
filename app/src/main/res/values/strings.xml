@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">HospitalGuide</string>
+    <string-array name="cities">
+        <item>Helsinki</item>
+        <item>Espoo</item>
+        <item>Vantaa</item>
+    </string-array>
+
+    <string-array name="helsinkiSuburbs">
+        <item>Pasila</item>
+        <item>Kamppi</item>
+        <item>Töölö</item>
+    </string-array>
+
+    <string-array name="espooSuburbs">
+        <item>Pasila</item>
+        <item>Kamppi</item>
+        <item>Töölö</item>
+    </string-array>
+</resources>
