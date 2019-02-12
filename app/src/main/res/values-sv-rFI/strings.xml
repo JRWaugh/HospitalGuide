@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SjukhusGuide</string>
+    <string name="helsinki">Helsingfors</string>
+    <string-array name="helsinkiSuburbs">
+        <item>Kampen</item>
+        <item>Tölö</item>
+        <item>Malm</item>
+        <item>Hertonäs</item>
+    </string-array>
+    <string name="vantaa">Vanda</string>
+    <string-array name="vantaaSuburbs">
+        <item>Dickursby</item>")
+        <item>Håkansböle</item>
+        <item>Björkby</item>
+        <item>Korso</item>
+        <item>Aviapolis</item>
+        <item>Myrbacka</item>
+        <item>Kivistö</item>
+    </string-array>
+    <string name="espoo">Esbo</string>
+    <string-array name="espooSuburbs">
+        <item>Alberga</item>
+        <item>Kilo</item>
+        <item>Hagalund</item>
+        <item>Gröndal</item>
+        <item>Espoon Keskus</item>
+    </string-array>
+    <string name="enterRegion">Enter City Region:</string>
+    <string name="enterCity">Enter a City:</string>
+    <string name="enterTreatment">Enter Treatment Needed:</string>
+    <string name="search">Sök</string>
+    <string name="sv">sv</string>
+    <string name="fi">fi</string>
+</resources>

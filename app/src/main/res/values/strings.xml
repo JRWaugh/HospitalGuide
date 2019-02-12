@@ -1,23 +1,15 @@
 <resources>
     <string name="app_name">HospitalGuide</string>
-    <string-array name="cities">
-        <item>Helsinki</item>
-        <item>Espoo</item>
-        <item>Vantaa</item>
-    </string-array>
 
+    <string name="helsinki">Helsinki</string>
     <string-array name="helsinkiSuburbs">
-        <item>Pasila</item>
         <item>Kamppi</item>
         <item>Töölö</item>
+        <item>Malmi</item>
+        <item>Herttoniemi</item>
     </string-array>
 
-    <string-array name="espooSuburbs">
-        <item>Leppävaara</item>
-        <item>Kilo</item>
-        <item>Espoon Keskus</item>
-    </string-array>
-
+    <string name="vantaa">Vantaa</string>
     <string-array name="vantaaSuburbs">
         <item>Tikkurila</item>")
         <item>Hakunila</item>
@@ -26,5 +18,26 @@
         <item>Aviapolis</item>
         <item>Myyrmäki</item>
         <item>Kivistö</item>
+    </string-array>
+
+    <string name="espoo">Espoo</string>
+    <string name="enterRegion">Enter City Region:</string>
+    <string name="enterCity">Enter a City:</string>
+    <string name="enterTreatment">Enter Treatment Needed:</string>
+    <string name="search">Search</string>
+    <string name="sv">sv</string>
+    <string name="fi">fi</string>
+    <string-array name="espooSuburbs">
+        <item>Leppävaara</item>
+        <item>Kilo</item>
+        <item>Tapiola</item>
+        <item>Viherlaakso</item>
+        <item>Espoon Keskus</item>
+    </string-array>
+
+    <string-array name="cities">
+        <item>@string/helsinki</item>
+        <item>@string/vantaa</item>
+        <item>@string/espoo</item>
     </string-array>
 </resources>
