@@ -3,6 +3,7 @@
 
     <string name="helsinki">Helsinki</string>
     <string-array name="helsinkiSuburbs">
+        <item>All</item>
         <item>Kamppi</item>
         <item>Töölö</item>
         <item>Malmi</item>
@@ -11,7 +12,7 @@
 
     <string name="vantaa">Vantaa</string>
     <string-array name="vantaaSuburbs">
-        <item>Tikkurila</item>")
+        <item>All</item>
         <item>Hakunila</item>
         <item>Koivukylä</item>
         <item>Korso</item>
@@ -28,6 +29,7 @@
     <string name="sv">sv</string>
     <string name="fi">fi</string>
     <string-array name="espooSuburbs">
+        <item>All</item>
         <item>Leppävaara</item>
         <item>Kilo</item>
         <item>Tapiola</item>

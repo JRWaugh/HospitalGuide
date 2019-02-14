@@ -12,6 +12,7 @@ class Hospitals {
         hospitalList.add(new Hospital("Leppävaara", "Terveystalo Espoo Leppävaara", "Alberganesplanadi 1", "Terveysasema", false));
         hospitalList.add(new Hospital("Leppävaara", "Terveystalo Leppävaara Sello", "Leppävaarankatu 7 A", "Terveysasema",false));
         hospitalList.add(new Hospital("Leppävaara", "Mehiläinen Espoo Leppävaara", "Hevosenkenkä 3", "Terveysasema", false));
+        hospitalList.add(new Hospital("Tikkurila", "Tikkurila Health Centre", "Kielotie 11 A", "Terveysasema", true));
     }
 
     static Hospitals getInstance(){
