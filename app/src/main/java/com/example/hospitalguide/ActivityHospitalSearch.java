@@ -36,7 +36,7 @@ public class ActivityHospitalSearch extends AppCompatActivity {
         VANTAA = getResources().getString(R.string.vantaa);
 
         String selectedCity = sharedPref.getString("selectedCity", HELSINKI);
-        
+
         treatment = findViewById(R.id.spTreatment);
         locations = findViewById(R.id.spCities);
         suburbs = findViewById(R.id.spRegions);
