@@ -2,13 +2,15 @@ package com.example.hospitalguide;
 
 public class Hospital {
     private String name;
-    private String location;
+    private String city;
+    private String address;
     private String treatment;
     private Boolean isPublic;
 
-    public Hospital(String name, String location, String treatment, Boolean isPublic){
+    public Hospital(String city, String name, String address, String treatment, Boolean isPublic){
+        this.city = city;
         this.name = name;
-        this.location = location;
+        this.address = address;
         this.treatment = treatment;
         this.isPublic = isPublic;
     }
@@ -18,15 +20,17 @@ public class Hospital {
     }
 
     public String getLocation(){
-        return this.location;
+        return this.city;
     }
 
     public String getName(){
         return this.name;
     }
 
-    public Boolean getIsPublic(){
-        return this.isPublic;
+    public String getIsPublic(){
+        if(this.isPublic)
+            return "This is a public hospital.";
+        else return "This is a private hospital.";
     }
 
     @Override

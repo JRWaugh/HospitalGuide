@@ -7,9 +7,11 @@ class Hospitals {
     private static Hospitals hospitals;
 
     private Hospitals(){
-        hospitalList.add(new Hospital("Helsinki Hospital", "Bulevardi 22, Helsinki", "General", false));
-        hospitalList.add(new Hospital("Mehiläinen Espoo Leppävaara", "Hevosenkenkä 3, Espoo", "General", false));
-        hospitalList.add(new Hospital("Lastenlinna Children's Castle", "Lastenlinnantie 2, Helsinki", "Children's hospital", true));
+        hospitalList.add(new Hospital("Helsinki", "Helsinki Hospital","Bulevardi 22", "Hospital", false));
+        hospitalList.add(new Hospital("Leppävaara", "Leppävaara Health Centre", "Konstaapelinkatu 2", "Terveysasema", true));
+        hospitalList.add(new Hospital("Leppävaara", "Terveystalo Espoo Leppävaara", "Alberganesplanadi 1", "Terveysasema", false));
+        hospitalList.add(new Hospital("Leppävaara", "Terveystalo Leppävaara Sello", "Leppävaarankatu 7 A", "Terveysasema",false));
+        hospitalList.add(new Hospital("Leppävaara", "Mehiläinen Espoo Leppävaara", "Hevosenkenkä 3", "Terveysasema", false));
     }
 
     static Hospitals getInstance(){
@@ -32,6 +34,7 @@ class Hospitals {
         ArrayList <Hospital> filteredList = new ArrayList<>();
         for(Hospital hospital : hospitalList){
             if(hospital.getLocation().contains(location) && hospital.getTreatment().contains(treatment))
+            if(hospital.getLocation().contains(location))
                 filteredList.add(hospital);
         }
         return filteredList;
