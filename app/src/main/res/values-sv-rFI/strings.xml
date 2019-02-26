@@ -4,11 +4,11 @@
     <string name="helsinki">Helsingfors</string>
     <string name="vantaa">Vanda</string>
     <string name="espoo">Esbo</string>
-    <string name="enterRegion">Enter City Region:</string>
-    <string name="enterCity">Enter a City:</string>
-    <string name="enterTreatment">Enter Treatment Needed:</string>
+    <string name="enterRegion">Välj region:</string>
+    <string name="enterCity">Välj stad:</string>
     <string name="search">Sök</string>
     <string name="sv">sv</string>
     <string name="fi">fi</string>
     <string name="table">sv_terveysasema</string>
+    <string name="en">en</string>
 </resources>

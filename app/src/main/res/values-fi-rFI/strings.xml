@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SairaalaHaku</string>
+    <string name="table">fi_terveysasema</string>
+    <string name="helsinki">Helsinki</string>
+    <string name="vantaa">Vantaa</string>
+    <string name="espoo">Espoo</string>
+    <string name="enterRegion">Valitse seutu:</string>
+    <string name="enterCity">Valitse kaupunki:</string>
+    <string name="search">Hae</string>
+    <string name="sv">sv</string>
+    <string name="fi">fi</string>
+    <string name="en">en</string>
+</resources>

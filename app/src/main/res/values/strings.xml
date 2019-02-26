@@ -1,15 +1,15 @@
 <resources>
     <string name="app_name">HospitalGuide</string>
-    <string name="table">fi_terveysasema</string>
+    <string name="table">en_terveysasema</string>
     <string name="helsinki">Helsinki</string>
     <string name="vantaa">Vantaa</string>
     <string name="espoo">Espoo</string>
-    <string name="enterRegion">Enter City Region:</string>
-    <string name="enterCity">Enter a City:</string>
-    <string name="enterTreatment">Enter Treatment Needed:</string>
+    <string name="enterRegion">Select Region:</string>
+    <string name="enterCity">Select City:</string>
     <string name="search">Search</string>
     <string name="sv">sv</string>
     <string name="fi">fi</string>
+    <string name="en">en</string>
 
     <string-array name="cities">
         <item>@string/helsinki</item>

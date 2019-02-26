@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ActivityHospitalInfo"></activity>
+        <activity android:name=".ActivityHospitalInfo" />
         <activity android:name=".ActivityHospitalList" />
         <activity android:name=".ActivityHospitalSearch">
             <intent-filter>

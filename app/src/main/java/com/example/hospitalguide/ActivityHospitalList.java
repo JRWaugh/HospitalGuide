@@ -24,9 +24,9 @@ public class ActivityHospitalList extends AppCompatActivity {
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            public void onItemClick(AdapterView<?> parent, View view, int pos, long l) {
                 Intent hospitalInfo = new Intent(view.getContext(), ActivityHospitalInfo.class);
-                hospitalInfo.putExtra("hospital", adapterView.getItemAtPosition(i).toString());
+                hospitalInfo.putExtra("hospital", parent.getItemAtPosition(pos).toString());
                 startActivity(hospitalInfo);
             }
         });
