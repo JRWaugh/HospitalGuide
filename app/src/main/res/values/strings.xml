@@ -1,26 +1,8 @@
 <resources>
     <string name="app_name">HospitalGuide</string>
-
+    <string name="table">fi_terveysasema</string>
     <string name="helsinki">Helsinki</string>
-    <string-array name="helsinkiSuburbs">
-        <item>All</item>
-        <item>Kamppi</item>
-        <item>Töölö</item>
-        <item>Malmi</item>
-        <item>Herttoniemi</item>
-    </string-array>
-
     <string name="vantaa">Vantaa</string>
-    <string-array name="vantaaSuburbs">
-        <item>All</item>
-        <item>Hakunila</item>
-        <item>Koivukylä</item>
-        <item>Korso</item>
-        <item>Aviapolis</item>
-        <item>Myyrmäki</item>
-        <item>Kivistö</item>
-    </string-array>
-
     <string name="espoo">Espoo</string>
     <string name="enterRegion">Enter City Region:</string>
     <string name="enterCity">Enter a City:</string>
@@ -28,14 +10,6 @@
     <string name="search">Search</string>
     <string name="sv">sv</string>
     <string name="fi">fi</string>
-    <string-array name="espooSuburbs">
-        <item>All</item>
-        <item>Leppävaara</item>
-        <item>Kilo</item>
-        <item>Tapiola</item>
-        <item>Viherlaakso</item>
-        <item>Espoon Keskus</item>
-    </string-array>
 
     <string-array name="cities">
         <item>@string/helsinki</item>

@@ -1,40 +1,53 @@
 package com.example.hospitalguide;
 
 public class Hospital {
+    private int id;
     private String name;
+    private String region;
     private String city;
-    private String address;
-    private String treatment;
-    private Boolean isPublic;
+    private String description;
 
-    public Hospital(String city, String name, String address, String treatment, Boolean isPublic){
-        this.city = city;
+    public Hospital(){}
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setName(String name){
         this.name = name;
-        this.address = address;
-        this.treatment = treatment;
-        this.isPublic = isPublic;
-    }
-
-    public String getTreatment() {
-        return this.treatment;
-    }
-
-    public String getLocation(){
-        return this.city;
-    }
-
-    public String getName(){
-        return this.name;
-    }
-
-    public String getIsPublic(){
-        if(this.isPublic)
-            return "This is a public hospital.";
-        else return "This is a private hospital.";
     }
 
     @Override
     public String toString(){
+        //Acts as getName. ArrayAdapter calls object's toString method, so this is useful.
         return this.name;
+    }
+
+    public void setRegion(String region){
+        this.region = region;
+    }
+
+    public String getRegion() {
+        return region;
+    }
+
+    public void setCity(String city){
+        this.city = city;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setDescription(String description){
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }

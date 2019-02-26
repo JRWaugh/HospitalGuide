@@ -15,9 +15,9 @@ public class ActivityHospitalInfo extends AppCompatActivity {
         Intent intent = getIntent();
         String i = intent.getStringExtra("hospital");
 
-        ((TextView)findViewById(R.id.tvName)).setText(Hospitals.getInstance().getHospital(i).getName());
-        ((TextView)findViewById(R.id.tvCities)).setText(Hospitals.getInstance().getHospital(i).getLocation());
+        /*((TextView)findViewById(R.id.tvName)).setText(Hospitals.getInstance().getHospital(i).toString());
+        ((TextView)findViewById(R.id.tvCities)).setText(Hospitals.getInstance().getHospital(i).getRegion());
         ((TextView)findViewById(R.id.tvTreatment)).setText(Hospitals.getInstance().getHospital(i).getTreatment());
-        ((TextView)findViewById(R.id.tvPublic)).setText(Hospitals.getInstance().getHospital(i).getIsPublic());
+        ((TextView)findViewById(R.id.tvPublic)).setText(Hospitals.getInstance().getHospital(i).getIsPublic());*/
     }
 }
