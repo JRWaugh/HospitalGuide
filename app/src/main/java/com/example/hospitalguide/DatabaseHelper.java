@@ -163,16 +163,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return hospitalList;
     }
 
-    public Hospital getTerveysasema(String name) {
+    public Hospital getTerveysasema(int id) {
         Hospital hospital = new Hospital();
         SQLiteDatabase db = this.getReadableDatabase();
-        String selectQuery = "SELECT " + KEY_DESCRIPTION + " FROM " + currentTable + " WHERE " + KEY_NAME + " = '" + name + "'";
+        String selectQuery = "SELECT " + KEY_NAME + ", " + KEY_DESCRIPTION + " FROM " + currentTable + " WHERE " + KEY_ID + " = " + id;
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         //Grab the description of the hospital given to the method.
         cursor.moveToFirst();
-        hospital.setDescription(cursor.getString(0));
-        hospital.setName(name);
+        hospital.setName(cursor.getString(0));
+        hospital.setDescription(cursor.getString(1));
 
         cursor.close();
         db.close();

@@ -15,7 +15,7 @@ public class ActivityHospitalInfo extends AppCompatActivity {
         setContentView(R.layout.activity_hospital_info);
 
         Intent intent = getIntent();
-        String i = intent.getStringExtra("hospital");
+        int i = intent.getIntExtra("hospital", 0);
 
         dbHelper = new DatabaseHelper(this);
         Hospital hospital = dbHelper.getTerveysasema(i);

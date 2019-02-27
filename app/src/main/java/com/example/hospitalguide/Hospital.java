@@ -14,7 +14,7 @@ public class Hospital {
     }
 
     public int getId() {
-        return id;
+        return this.id;
     }
 
     public void setName(String name){
@@ -32,7 +32,7 @@ public class Hospital {
     }
 
     public String getRegion() {
-        return region;
+        return this.region;
     }
 
     public void setCity(String city){
@@ -40,7 +40,7 @@ public class Hospital {
     }
 
     public String getCity() {
-        return city;
+        return this.city;
     }
 
     public void setDescription(String description){
@@ -48,6 +48,6 @@ public class Hospital {
     }
 
     public String getDescription() {
-        return description;
+        return this.description;
     }
 }

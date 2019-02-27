@@ -19,14 +19,14 @@ public class ActivityHospitalList extends AppCompatActivity {
         Intent intent = getIntent();
         String region = intent.getStringExtra("region");
         ListView lv = findViewById(R.id.lvHospitals);
-
         lv.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, dbHelper.getTerveysasemat(region)));
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int pos, long l) {
                 Intent hospitalInfo = new Intent(view.getContext(), ActivityHospitalInfo.class);
-                hospitalInfo.putExtra("hospital", parent.getItemAtPosition(pos).toString());
+                Hospital hospital = (Hospital)parent.getItemAtPosition(pos);
+                hospitalInfo.putExtra("hospital", hospital.getId());
                 startActivity(hospitalInfo);
             }
         });
