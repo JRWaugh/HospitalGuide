@@ -1,5 +1,6 @@
 package com.example.hospitalguide;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -11,18 +12,25 @@ import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Locale;
 
 public class ActivityHospitalSearch extends AppCompatActivity {
     Spinner locations;
     Spinner suburbs;
-    Button search;
+    Button buttonSearch;
+    Button buttonSearch2;
+    Hospital hospital;
+    AutoCompleteTextView textSearch;
     String TABLE;
     String selectedRegion;
+    ArrayAdapter<String> adapter;
 
     //Not currently used. Not sure what to save with it yet.
     private SharedPreferences sharedPref;
@@ -53,13 +61,17 @@ public class ActivityHospitalSearch extends AppCompatActivity {
 
         locations = findViewById(R.id.spCities);
         suburbs = findViewById(R.id.spRegions);
-        search = findViewById(R.id.btnSearch);
+        buttonSearch = findViewById(R.id.btnSearch);
+        buttonSearch2 = findViewById(R.id.btnSearch2);
+        textSearch = findViewById(R.id.actSearch);
+        textSearch.setThreshold(2);
+        textSearch.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, DatabaseHelper.getInstance(this).getAllTerveysasemat()));
 
         locations.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long l) {
                 String selectedCity = parent.getItemAtPosition(pos).toString();
-                suburbs.setAdapter(new ArrayAdapter<>(parent.getContext(), android.R.layout.simple_spinner_dropdown_item, DatabaseHelper.getInstance(view.getContext()).getRegions(selectedCity)));
+                suburbs.setAdapter(new ArrayAdapter<>(parent.getContext(), android.R.layout.simple_spinner_dropdown_item, DatabaseHelper.getInstance(parent.getContext()).getRegions(selectedCity)));
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {}
@@ -74,11 +86,27 @@ public class ActivityHospitalSearch extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> adapterView) {}
         });
 
-        search.setOnClickListener(new View.OnClickListener(){
+        buttonSearch.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), ActivityHospitalList.class);
                 intent.putExtra("region", selectedRegion);
+                startActivity(intent);
+            }
+        });
+
+        textSearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int pos, long l) {
+                hospital = (Hospital)parent.getItemAtPosition(pos);
+            }
+        });
+
+        buttonSearch2.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), ActivityHospitalInfo.class);
+                intent.putExtra("hospital", hospital.getId());
                 startActivity(intent);
             }
         });

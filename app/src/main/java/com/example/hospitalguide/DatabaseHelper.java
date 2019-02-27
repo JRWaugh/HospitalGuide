@@ -151,8 +151,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
-        if (cursor.moveToFirst()) {
-            do {
+        if(cursor.moveToFirst()){
+            do{
                 Hospital hospital = new Hospital();
                 hospital.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID)));
                 hospital.setName(cursor.getString(cursor.getColumnIndex(KEY_NAME)));
@@ -160,7 +160,27 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 hospital.setCity(cursor.getString(cursor.getColumnIndex(KEY_CITY)));
                 hospital.setDescription(cursor.getString(cursor.getColumnIndex(KEY_DESCRIPTION)));
                 hospitalList.add(hospital);
-            } while (cursor.moveToNext());
+            } while(cursor.moveToNext());
+        }
+        db.close();
+        cursor.close();
+        return hospitalList;
+    }
+
+    public ArrayList<Hospital> getAllTerveysasemat(){
+        ArrayList<Hospital> hospitalList = new ArrayList<>();
+        String selectQuery = "SELECT " + KEY_ID + ", " + KEY_NAME + "," + KEY_DESCRIPTION + " FROM " + currentTable;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if(cursor.moveToFirst()){
+            do {
+                Hospital hospital = new Hospital();
+                hospital.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID)));
+                hospital.setName(cursor.getString(cursor.getColumnIndex(KEY_NAME)));
+                hospital.setDescription(cursor.getString(cursor.getColumnIndex(KEY_DESCRIPTION)));
+                hospitalList.add(hospital);
+            } while(cursor.moveToNext());
         }
         db.close();
         cursor.close();
