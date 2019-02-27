@@ -26,7 +26,7 @@ public class ActivityHospitalSearch extends AppCompatActivity {
 
     //Not currently used. Not sure what to save with it yet.
     private SharedPreferences sharedPref;
-    DatabaseHelper dbHelper = null;
+
     Locale enLocale = new Locale ("en");
     Locale svLocale = new Locale("sv");
     Locale fiLocale = new Locale("fi");
@@ -39,15 +39,14 @@ public class ActivityHospitalSearch extends AppCompatActivity {
         // Pull resources from strings. Changes with different languages.
         TABLE = getResources().getString(R.string.table);
 
-        dbHelper = new DatabaseHelper(this);
         try {
-            dbHelper.createDatabase();
+            DatabaseHelper.getInstance(this).createDatabase();
         } catch(IOException ioe){
             throw new Error("Unable to create database");
         }
 
         try {
-            dbHelper.openDataBase();
+            DatabaseHelper.getInstance(this).openDataBase();
         } catch(SQLException sqle){
             throw sqle;
         }
@@ -60,7 +59,7 @@ public class ActivityHospitalSearch extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long l) {
                 String selectedCity = parent.getItemAtPosition(pos).toString();
-                suburbs.setAdapter(new ArrayAdapter<>(parent.getContext(), android.R.layout.simple_spinner_dropdown_item, dbHelper.getRegions(selectedCity)));
+                suburbs.setAdapter(new ArrayAdapter<>(parent.getContext(), android.R.layout.simple_spinner_dropdown_item, DatabaseHelper.getInstance(view.getContext()).getRegions(selectedCity)));
             }
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {}

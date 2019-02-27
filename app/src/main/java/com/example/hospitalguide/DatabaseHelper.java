@@ -17,9 +17,10 @@ import java.util.Collections;
 import java.util.HashSet;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
+    private static DatabaseHelper dbHelper;
     private final Context context;
     private SQLiteDatabase myDataBase;
-    private String currentTable;
+    private static String currentTable;
 
     // Column names
     private static final String KEY_ID = "_id";
@@ -28,22 +29,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_CITY = "city";
     private static final String KEY_DESCRIPTION = "description";
 
-
-    // Database Version
+    private static String DATABASE_PATH = "";
+    private static String DATABASE_NAME = "terveysasemat.db";
     private static final int DATABASE_VERSION = 4;
 
-    private static String DATABASE_PATH = "";
+    public static synchronized DatabaseHelper getInstance(Context context) {
+        if (dbHelper == null) {
+            dbHelper = new DatabaseHelper(context.getApplicationContext());
+        }
+        currentTable = context.getString(R.string.table);
+        return dbHelper;
+    }
 
-    private static String DATABASE_NAME = "terveysasemat.db";
-
-    public DatabaseHelper(Context context) {
+    private DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
         this.context = context;
         if (android.os.Build.VERSION.SDK_INT >= 17)
             DATABASE_PATH = context.getApplicationInfo().dataDir + "/databases/";
         else
             DATABASE_PATH = "/data/data/" + context.getPackageName() + "/databases/";
-        this.currentTable = this.context.getString(R.string.table);
+
     }
 
     public void createDatabase() throws IOException{
@@ -52,8 +57,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if(dbExist){}
         else{
-            //By calling this method an empty database will be created into the default system path
-            //of your application so we are gonna be able to overwrite that database with our database.
+            /*By calling this method, an empty database will be created into the default system path
+            of your application so we are gonna be able to overwrite that database with our database.*/
             this.getReadableDatabase();
             this.close();
             try {
@@ -101,16 +106,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //Open the database
         String myPath = DATABASE_PATH + DATABASE_NAME;
         myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
+        currentTable = this.context.getString(R.string.table);
     }
 
     @Override
     public synchronized void close() {
-
         if(myDataBase != null)
             myDataBase.close();
 
         super.close();
-
     }
 
     @Override

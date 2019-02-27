@@ -9,17 +9,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class ActivityHospitalList extends AppCompatActivity {
-    DatabaseHelper dbHelper = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hospital_list);
-        dbHelper = new DatabaseHelper(this);
-        Intent intent = getIntent();
-        String region = intent.getStringExtra("region");
+        String region = getIntent().getStringExtra("region");
         ListView lv = findViewById(R.id.lvHospitals);
-        lv.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, dbHelper.getTerveysasemat(region)));
+        lv.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, DatabaseHelper.getInstance(this).getTerveysasemat(region)));
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
