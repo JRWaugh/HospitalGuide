@@ -2,7 +2,6 @@ package com.example.hospitalguide;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.SQLException;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,46 +11,20 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Spinner;
 
-import java.io.IOException;
-import java.util.Locale;
-
 public class ActivityHospitalSearch extends AppCompatActivity {
     Spinner locations;
     Spinner suburbs;
     Button buttonSearch;
-    Button buttonSearch2;
     Hospital hospital;
     AutoCompleteTextView textSearch;
-    String TABLE;
     String selectedRegion;
-    ArrayAdapter<String> adapter;
-
     //Not currently used. Not sure what to save with it yet.
     private SharedPreferences sharedPref;
-
-    Locale enLocale = new Locale ("en");
-    Locale svLocale = new Locale("sv");
-    Locale fiLocale = new Locale("fi");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        // Pull resources from strings. Changes with different languages.
-        TABLE = getResources().getString(R.string.table);
-
-        try {
-            DatabaseHelper.getInstance(this).createDatabase();
-        } catch(IOException ioe){
-            throw new Error("Unable to create database");
-        }
-
-        try {
-            DatabaseHelper.getInstance(this).openDataBase();
-        } catch(SQLException sqle){
-            throw sqle;
-        }
 
         locations = findViewById(R.id.spCities);
         suburbs = findViewById(R.id.spRegions);
