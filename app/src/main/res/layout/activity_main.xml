@@ -6,20 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".ActivityHospitalSearch">
 
-    <Button
-        android:id="@+id/btnSearch2"
-        android:layout_width="wrap_content"
+    <fragment
+        android:id="@+id/sample"
+        android:name="com.example.hospitalguide.BlankFragment"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:text="@string/search"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/actSearch" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Spinner
         android:id="@+id/spRegions"
@@ -27,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -53,7 +47,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:entries="@array/cities"
@@ -66,7 +60,7 @@
         android:id="@+id/tvCities"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="8dp"
         android:text="@string/enterCity"
         android:textSize="24sp"
         app:layout_constraintHorizontal_bias="0.054"
@@ -89,47 +83,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spRegions" />
 
-    <TextView
-        android:id="@+id/tvSwedish"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:onClick="onClick"
-        android:text="@string/sv"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
-        android:id="@+id/tvFinnish"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:onClick="onClick"
-        android:text="@string/fi"
-        app:layout_constraintEnd_toStartOf="@+id/tvSwedish"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvEnglish"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:clickable="true"
-        android:focusable="true"
-        android:onClick="onClick"
-        android:text="@string/en"
-        app:layout_constraintEnd_toStartOf="@+id/tvFinnish"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <AutoCompleteTextView
         android:id="@+id/actSearch"
@@ -157,7 +111,7 @@
         android:layout_marginTop="16dp"
         android:text="Type a Health Centre Name:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/sample" />
 
     <TextView
         android:id="@+id/textView2"
@@ -165,8 +119,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="24dp"
         android:text="Or Search By Area:"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSearch2" />
+        app:layout_constraintTop_toBottomOf="@+id/actSearch" />
 </android.support.constraint.ConstraintLayout>

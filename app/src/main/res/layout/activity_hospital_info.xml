@@ -6,6 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".ActivityHospitalInfo">
 
+    <fragment
+        android:id="@+id/sample"
+        android:name="com.example.hospitalguide.BlankFragment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/tvName"
         android:layout_width="wrap_content"

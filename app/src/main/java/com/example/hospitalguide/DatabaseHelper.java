@@ -20,12 +20,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static DatabaseHelper dbHelper;
     private final Context context;
     private SQLiteDatabase myDataBase;
-    private static String currentTable;
+    private String currentTable;
 
     // Column names
-    private static final String KEY_ID = "_id";
-    private static final String KEY_NAME = "name";
-    private static final String KEY_REGION = "region";
+    static final String KEY_ID = "_id";
+    static final String KEY_NAME = "name";
+    static final String KEY_REGION = "region";
     private static final String KEY_CITY = "city";
     private static final String KEY_DESCRIPTION = "description";
 
@@ -37,7 +37,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         if (dbHelper == null) {
             dbHelper = new DatabaseHelper(context.getApplicationContext());
         }
-        currentTable = context.getString(R.string.table);
         return dbHelper;
     }
 
@@ -48,6 +47,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             DATABASE_PATH = context.getApplicationInfo().dataDir + "/databases/";
         else
             DATABASE_PATH = "/data/data/" + context.getPackageName() + "/databases/";
+        this.currentTable = this.context.getResources().getString(R.string.table);
 
     }
 
@@ -106,7 +106,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //Open the database
         String myPath = DATABASE_PATH + DATABASE_NAME;
         myDataBase = SQLiteDatabase.openDatabase(myPath, null, SQLiteDatabase.OPEN_READONLY);
-        currentTable = this.context.getString(R.string.table);
     }
 
     @Override
@@ -127,7 +126,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public ArrayList<String> getRegions(String selectedCity) {
         HashSet<String> regionsSet = new HashSet<>();
         ArrayList<String> regions = new ArrayList<>();
-
         String selectQuery = "SELECT " + KEY_REGION + " FROM " + currentTable + " WHERE " + KEY_CITY + " = '" + selectedCity + "'";
         //e.g. "Select regions from the table where the description contains a specific city
         SQLiteDatabase db = this.getReadableDatabase();
@@ -190,17 +188,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Hospital getTerveysasema(int id) {
         Hospital hospital = new Hospital();
         SQLiteDatabase db = this.getReadableDatabase();
-        String selectQuery = "SELECT " + KEY_NAME + ", " + KEY_DESCRIPTION + " FROM " + currentTable + " WHERE " + KEY_ID + " = " + id;
+        String selectQuery = "SELECT " + KEY_NAME + ", " + KEY_DESCRIPTION + " FROM " + this.currentTable + " WHERE " + KEY_ID + " = " + id;
         Cursor cursor = db.rawQuery(selectQuery, null);
 
         //Grab the description of the hospital given to the method.
-        cursor.moveToFirst();
-        hospital.setName(cursor.getString(0));
-        hospital.setDescription(cursor.getString(1));
-
-        cursor.close();
+        if( cursor != null && cursor.moveToFirst() ) {
+            hospital.setName(cursor.getString(0));
+            hospital.setDescription(cursor.getString(1));
+        }
         db.close();
+        cursor.close();
         return hospital;
     }
 
+    public void setTable(String table){
+        this.currentTable = table;
+    }
 }
