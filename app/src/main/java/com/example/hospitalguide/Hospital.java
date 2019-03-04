@@ -5,7 +5,10 @@ public class Hospital {
     private String name;
     private String region;
     private String city;
-    private String description;
+    private String address;
+    private String phone;
+    private String website;
+    private String appointment;
 
     public Hospital(){}
 
@@ -43,11 +46,35 @@ public class Hospital {
         return this.city;
     }
 
-    public void setDescription(String description){
-        this.description = description;
+    public String getAddress() {
+        return address;
     }
 
-    public String getDescription() {
-        return this.description;
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public String getAppointment() {
+        return appointment;
+    }
+
+    public void setAppointment(String appointment) {
+        this.appointment = appointment;
     }
 }

@@ -10,10 +10,12 @@
     <string name="sv">sv</string>
     <string name="fi">fi</string>
     <string name="en">en</string>
-
+    <string name="phone">"Phone: "</string>
+    <string name="website">VISIT WEBSITE</string>
     <string-array name="cities">
         <item>@string/helsinki</item>
         <item>@string/vantaa</item>
         <item>@string/espoo</item>
     </string-array>
+    <string name="address">"Address: "</string>
 </resources>

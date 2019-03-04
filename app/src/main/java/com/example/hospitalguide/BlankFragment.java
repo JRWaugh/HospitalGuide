@@ -1,9 +1,12 @@
 package com.example.hospitalguide;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.SQLException;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -26,6 +29,10 @@ public class BlankFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.fragment_blank, container, false);
+        res = view.getResources();
+
+        //Creates database (or opens database if already created)
         try {
             DatabaseHelper.getInstance(getContext()).createDatabase();
         } catch(IOException ioe){
@@ -37,8 +44,8 @@ public class BlankFragment extends Fragment {
         } catch(SQLException sqle){
             throw sqle;
         }
-        view = inflater.inflate(R.layout.fragment_blank, container, false);
-        res = view.getResources();
+
+
         MyClickListener listener = new MyClickListener();
         TextView btnEnglish = view.findViewById(R.id.tvEnglish);
         btnEnglish.setOnClickListener(listener);
@@ -63,7 +70,9 @@ public class BlankFragment extends Fragment {
                 conf.locale = svLocale;
             res.updateConfiguration(conf, dm);
             DatabaseHelper.getInstance(getContext()).setTable(res.getString(R.string.table));
-            getActivity().recreate();
+
+            getActivity().finish();
+            startActivity(getActivity().getIntent());
         }
     }
 }

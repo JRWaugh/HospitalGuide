@@ -2,6 +2,7 @@ package com.example.hospitalguide;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.SQLException;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,8 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Spinner;
+
+import java.io.IOException;
 
 public class ActivityHospitalSearch extends AppCompatActivity {
     Spinner locations;
@@ -33,10 +36,12 @@ public class ActivityHospitalSearch extends AppCompatActivity {
         textSearch.setThreshold(2);
         textSearch.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, DatabaseHelper.getInstance(this).getAllTerveysasemat()));
 
+        //Locations spinner is populated in XML, via String resources.
         locations.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long l) {
                 String selectedCity = parent.getItemAtPosition(pos).toString();
+                //Populates suburbs spinner based on location selected in locations spinner.
                 suburbs.setAdapter(new ArrayAdapter<>(parent.getContext(), android.R.layout.simple_spinner_dropdown_item, DatabaseHelper.getInstance(parent.getContext()).getRegions(selectedCity)));
             }
             @Override
