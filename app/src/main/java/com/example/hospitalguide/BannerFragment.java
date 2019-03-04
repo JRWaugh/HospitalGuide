@@ -1,12 +1,9 @@
 package com.example.hospitalguide;
 
-import android.content.Context;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.SQLException;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
@@ -17,7 +14,7 @@ import android.widget.TextView;
 import java.io.IOException;
 import java.util.Locale;
 
-public class BlankFragment extends Fragment {
+public class BannerFragment extends Fragment {
 
     Locale enLocale = new Locale ("en");
     Locale svLocale = new Locale("sv");
@@ -29,7 +26,7 @@ public class BlankFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_blank, container, false);
+        view = inflater.inflate(R.layout.fragment_banner, container, false);
         res = view.getResources();
 
         //Creates database (or opens database if already created)
