@@ -20,4 +20,5 @@
     <string name="hintSearch">Etsiä terveysasemia</string>
     <string name="textSearchTitle">Hae nimen mukaan:</string>
     <string name="spinnerSearchTitle">Etsi alueittain:</string>
+    <string name="reminder">Aseta muistutus</string>
 </resources>

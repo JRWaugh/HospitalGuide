@@ -2,13 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:gravity="right">
+
         <TextView
             android:id="@+id/tvEnglish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
             android:focusable="true"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginRight="10dp"
             android:text="@string/en" />
 
         <TextView
@@ -17,6 +22,9 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:focusable="true"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginRight="10dp"
             android:text="@string/sv" />
 
         <TextView
@@ -25,6 +33,9 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:focusable="true"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginRight="10dp"
             android:text="@string/fi" />
     />
 </LinearLayout>

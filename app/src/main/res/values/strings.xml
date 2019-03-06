@@ -24,4 +24,5 @@
     <string name="appointments">View Appointments</string>
     <string name="health_centre">Health Centre:</string>
     <string name="date">Date:</string>
+    <string name="reminder">Set Reminder</string>
 </resources>

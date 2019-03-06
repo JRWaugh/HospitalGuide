@@ -96,7 +96,9 @@ public class ActivityHospitalInfo extends AppCompatActivity {
         public void onDateSet(DatePicker view, int year, int month, int day) {
             Calendar input = Calendar.getInstance();
             input.set(year, month, day);
-            if(input.getTimeInMillis() >= System.currentTimeMillis()){
+            Log.d("tag", String.valueOf(input.getTimeInMillis()));
+            Log.d("tag", String.valueOf(System.currentTimeMillis()));
+            if((input.getTimeInMillis() - System.currentTimeMillis()) < 10){
                 Reminder.getInstance().setYear(String.valueOf(year));
                 Reminder.getInstance().setMonth(String.valueOf(month));
                 Reminder.getInstance().setDay(String.valueOf(day));

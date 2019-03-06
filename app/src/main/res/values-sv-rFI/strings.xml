@@ -20,4 +20,5 @@
     <string name="hintSearch">Söka hälsostation</string>
     <string name="textSearchTitle">"Sök efter namn: "</string>
     <string name="spinnerSearchTitle">Sök efter region:</string>
+    <string name="reminder">Ange påminnelse</string>
 </resources>
