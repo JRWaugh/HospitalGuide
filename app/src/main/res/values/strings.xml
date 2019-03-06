@@ -18,4 +18,10 @@
         <item>@string/espoo</item>
     </string-array>
     <string name="address">"Address: "</string>
+    <string name="hintSearch">Search health centres</string>
+    <string name="textSearchTitle">Search By Name:</string>
+    <string name="spinnerSearchTitle">Search By Region:</string>
+    <string name="appointments">View Appointments</string>
+    <string name="health_centre">Health Centre:</string>
+    <string name="date">Date:</string>
 </resources>

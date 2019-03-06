@@ -15,7 +15,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".3"
-            android:text="Health Centre:" />
+            android:text="@string/health_centre" />
 
         <TextView
             android:id="@+id/tvHealthCentre"
@@ -35,7 +35,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".3"
-            android:text="Address:" />
+            android:text="@string/address" />
 
         <TextView
             android:id="@+id/tvAddress"
@@ -55,7 +55,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight=".3"
-            android:text="Date:" />
+            android:text="@string/date" />
 
         <TextView
             android:id="@+id/tvDate"

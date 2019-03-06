@@ -14,4 +14,10 @@
     <string name="phone">"Telefon: "</string>
     <string name="website">(SV)VISIT WEBSITE</string>
     <string name="address">"Adress: "</string>
+    <string name="date">"Datum: "</string>
+    <string name="health_centre">"Hälsostation: "</string>
+    <string name="appointments">Visa möten</string>
+    <string name="hintSearch">Söka hälsostation</string>
+    <string name="textSearchTitle">"Sök efter namn: "</string>
+    <string name="spinnerSearchTitle">Sök efter region:</string>
 </resources>
