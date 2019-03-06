@@ -18,6 +18,7 @@ public class ActivityHospitalSearch extends AppCompatActivity {
     Spinner locations;
     Spinner suburbs;
     Button buttonSearch;
+    Button reminder;
     Hospital hospital;
     AutoCompleteTextView textSearch;
     String selectedRegion;
@@ -32,6 +33,7 @@ public class ActivityHospitalSearch extends AppCompatActivity {
         locations = findViewById(R.id.spCities);
         suburbs = findViewById(R.id.spRegions);
         buttonSearch = findViewById(R.id.btnSearch);
+        reminder = findViewById(R.id.btnReminder);
         textSearch = findViewById(R.id.actSearch);
         textSearch.setThreshold(2);
         textSearch.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, DatabaseHelper.getInstance(this).getAllTerveysasemat()));
@@ -75,5 +77,14 @@ public class ActivityHospitalSearch extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        reminder.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), ActivityRemindersList.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

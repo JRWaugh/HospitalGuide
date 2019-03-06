@@ -1,32 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".BlankFragment"
-    android:id="@+id/frameLayout">
-
-    <!-- TODO: Update blank fragment layout -->
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
         <TextView
             android:id="@+id/tvEnglish"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
             android:focusable="true"
-            android:text="@string/en"
-            app:layout_constraintEnd_toStartOf="@+id/tvFinnish"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_conversion_absoluteHeight="19dp"
-            tools:layout_editor_absoluteY="8dp"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_conversion_absoluteWidth="16dp" />
+            android:text="@string/en" />
 
         <TextView
             android:id="@+id/tvSwedish"
@@ -34,13 +17,7 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:focusable="true"
-            android:text="@string/sv"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_conversion_absoluteHeight="19dp"
-            tools:layout_editor_absoluteY="8dp"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_conversion_absoluteWidth="14dp" />
+            android:text="@string/sv" />
 
         <TextView
             android:id="@+id/tvFinnish"
@@ -48,12 +25,6 @@
             android:layout_height="wrap_content"
             android:clickable="true"
             android:focusable="true"
-            android:text="@string/fi"
-            app:layout_constraintEnd_toStartOf="@+id/tvSwedish"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_conversion_absoluteHeight="19dp"
-            tools:layout_editor_absoluteY="8dp"
-            tools:layout_editor_absoluteX="0dp"
-            tools:layout_conversion_absoluteWidth="8dp" />
-    </LinearLayout>
-</FrameLayout>
+            android:text="@string/fi" />
+    />
+</LinearLayout>

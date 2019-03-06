@@ -1,6 +1,7 @@
 package com.example.hospitalguide;
 /* Lifted heavily from https://blog.reigndesign.com/blog/using-your-own-sqlite-database-in-android-applications/ */
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
@@ -201,6 +202,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         db.close();
         return hospital;
+    }
+
+    public void setReminder(int id, String date){
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(KEY_APPOINTMENT, date);
+        db.update("en_terveysasema", values, KEY_ID + " = " + id, null);
+        db.update("fi_terveysasema", values, KEY_ID + " = " + id, null);
+        db.update("sv_terveysasema", values, KEY_ID + " = " + id, null);
+    }
+
+    public ArrayList<Hospital> getReminders(){
+        ArrayList<Hospital> reminders = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = "SELECT " + KEY_ID + ", " + KEY_NAME + ", " + KEY_APPOINTMENT + " FROM " + this.currentTable + " WHERE " + KEY_APPOINTMENT + " IS NOT NULL ORDER BY " + KEY_APPOINTMENT;
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        if(cursor != null && cursor.moveToFirst()) {
+            do {
+                Hospital hospital = new Hospital();
+                hospital.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID)));
+                hospital.setName(cursor.getString(cursor.getColumnIndex(KEY_NAME)));
+                hospital.setAppointment(cursor.getString(cursor.getColumnIndex(KEY_APPOINTMENT)));
+                reminders.add(hospital);
+            } while (cursor.moveToNext());
+        }
+        return reminders;
     }
 
     public void setTable(String table){
