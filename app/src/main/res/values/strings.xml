@@ -21,8 +21,10 @@
     <string name="hintSearch">Search health centres</string>
     <string name="textSearchTitle">Search By Name:</string>
     <string name="spinnerSearchTitle">Search By Region:</string>
-    <string name="appointments">View Appointments</string>
+    <string name="appointments">View Reminders</string>
     <string name="health_centre">Health Centre:</string>
     <string name="date">Date:</string>
     <string name="reminder">Set Reminder</string>
+    <string name="reminderToast">Reminder saved</string>
+    <string name="reminderCancelledToast">Reminder cancelled</string>
 </resources>

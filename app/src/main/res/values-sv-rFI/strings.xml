@@ -12,13 +12,15 @@
     <string name="table">sv_terveysasema</string>
     <string name="en">en</string>
     <string name="phone">"Telefon: "</string>
-    <string name="website">(SV)VISIT WEBSITE</string>
+    <string name="website">Till hemsidan</string>
     <string name="address">"Adress: "</string>
     <string name="date">"Datum: "</string>
     <string name="health_centre">"Hälsostation: "</string>
-    <string name="appointments">Visa möten</string>
-    <string name="hintSearch">Söka hälsostation</string>
+    <string name="appointments">Visa påminnelse</string>
+    <string name="hintSearch">Sök hälsostationer</string>
     <string name="textSearchTitle">"Sök efter namn: "</string>
     <string name="spinnerSearchTitle">Sök efter region:</string>
-    <string name="reminder">Ange påminnelse</string>
+    <string name="reminder">Skapa påminnelse</string>
+    <string name="reminderToast">"Påminnelse skapad "</string>
+    <string name="reminderCancelledToast">Påminnelse raderad</string>
 </resources>

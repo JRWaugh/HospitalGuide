@@ -130,7 +130,7 @@ public class ActivityHospitalInfo extends AppCompatActivity {
             Reminder.getInstance().setHour(String.valueOf(hourOfDay));
             Reminder.getInstance().setMinute(String.valueOf(minute));
 
-            AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
+            final AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
             LayoutInflater inflater = getLayoutInflater();
             View layout = inflater.inflate(R.layout.alert_dialog_layout, null);
             alertDialog.setView(layout);
@@ -148,7 +148,7 @@ public class ActivityHospitalInfo extends AppCompatActivity {
                             Log.d("Tag", String.valueOf(selected));
                             Log.d("Tag", Reminder.getInstance().formattedDate());
                             DatabaseHelper.getInstance(getContext()).setReminder(selected, Reminder.getInstance().formattedDate());
-                            //Toast.makeText(getContext(),"Reminder set!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(alertDialog.getContext(),"Reminder set", Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
 
                         }
@@ -156,7 +156,7 @@ public class ActivityHospitalInfo extends AppCompatActivity {
             alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            //Toast.makeText(getContext(),"Reminder cancelled!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(),"Reminder cancelled", Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
 
                         }

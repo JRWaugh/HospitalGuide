@@ -12,13 +12,15 @@
     <string name="fi">fi</string>
     <string name="en">en</string>
     <string name="phone">"Puhelin: "</string>
-    <string name="website">(FI)VISIT WEBSITE</string>
+    <string name="website">Siirry verkkosivuille</string>
     <string name="address">"Osoite: "</string>
     <string name="date">"Päivämäärä: "</string>
     <string name="health_centre">"Terveysasema: "</string>
-    <string name="appointments">Näytä tapaamiset</string>
+    <string name="appointments">Näytä muistutukset</string>
     <string name="hintSearch">Etsiä terveysasemia</string>
     <string name="textSearchTitle">Hae nimen mukaan:</string>
     <string name="spinnerSearchTitle">Etsi alueittain:</string>
     <string name="reminder">Aseta muistutus</string>
+    <string name="reminderToast">Muistutus tallennettu</string>
+    <string name="reminderCancelledToast">Muistutus poistettu</string>
 </resources>
