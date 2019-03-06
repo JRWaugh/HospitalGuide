@@ -98,7 +98,7 @@ public class ActivityHospitalInfo extends AppCompatActivity {
             input.set(year, month, day);
             Log.d("tag", String.valueOf(input.getTimeInMillis()));
             Log.d("tag", String.valueOf(System.currentTimeMillis()));
-            if((input.getTimeInMillis() - System.currentTimeMillis()) < 10){
+            if(input.getTimeInMillis() >= (System.currentTimeMillis()-10)){
                 Reminder.getInstance().setYear(String.valueOf(year));
                 Reminder.getInstance().setMonth(String.valueOf(month));
                 Reminder.getInstance().setDay(String.valueOf(day));
