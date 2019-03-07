@@ -41,7 +41,7 @@ public class ActivityHospitalInfo extends AppCompatActivity {
         name.setText(hospital.toString());
 
         TextView address = findViewById(R.id.tvAddress);
-        address.append(hospital.getAddress());
+
 
         TextView phone = findViewById(R.id.tvPhone);
         phone.append(hospital.getPhone());
@@ -148,7 +148,7 @@ public class ActivityHospitalInfo extends AppCompatActivity {
                             Log.d("Tag", String.valueOf(selected));
                             Log.d("Tag", Reminder.getInstance().formattedDate());
                             DatabaseHelper.getInstance(getContext()).setReminder(selected, Reminder.getInstance().formattedDate());
-                            Toast.makeText(alertDialog.getContext(),"Reminder set", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(alertDialog.getContext(), alertDialog.getContext().getString(R.string.reminderToast), Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
 
                         }
@@ -156,7 +156,7 @@ public class ActivityHospitalInfo extends AppCompatActivity {
             alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel",
                     new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            Toast.makeText(getContext(),"Reminder cancelled", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(alertDialog.getContext(),alertDialog.getContext().getString(R.string.reminderCancelledToast), Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
 
                         }

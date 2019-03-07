@@ -1,14 +1,14 @@
 package com.example.hospitalguide;
 
 import android.content.Context;
-import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.SQLException;
 import android.os.Bundle;
-import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,19 +19,20 @@ import java.util.Locale;
 
 public class BlankFragment extends Fragment {
 
-    Locale enLocale = new Locale ("en");
-    Locale svLocale = new Locale("sv");
-    Locale fiLocale = new Locale("fi");
-
-    View view;
-    Resources res;
+    private SharedPreferences sharedPref;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_blank, container, false);
-        res = view.getResources();
-
+        View view = inflater.inflate(R.layout.fragment_blank, container, false);
+        sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        String language = sharedPref.getString("language", "en");
+        Resources res = this.getActivity().getResources();
+        Configuration conf = res.getConfiguration();
+        conf.locale = new Locale(language);
+        res.updateConfiguration(conf, res.getDisplayMetrics());
+        DatabaseHelper.getInstance(getContext()).setTable(res.getString(R.string.table));
+        
         //Creates database (or opens database if already created)
         try {
             DatabaseHelper.getInstance(getContext()).createDatabase();
@@ -45,7 +46,6 @@ public class BlankFragment extends Fragment {
             throw sqle;
         }
 
-
         MyClickListener listener = new MyClickListener();
         TextView btnEnglish = view.findViewById(R.id.tvEnglish);
         btnEnglish.setOnClickListener(listener);
@@ -54,23 +54,22 @@ public class BlankFragment extends Fragment {
         TextView btnSwedish = view.findViewById(R.id.tvSwedish);
         btnSwedish.setOnClickListener(listener);
         return view;
-
     }
 
     public class MyClickListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
-            DisplayMetrics dm = res.getDisplayMetrics();
-            Configuration conf = res.getConfiguration();
+            String language = "";
             if(view.getId() == R.id.tvEnglish)
-                conf.locale = enLocale;
+                language = "en";
             else if(view.getId() == R.id.tvFinnish)
-                conf.locale = fiLocale;
+                language = "fi";
             else if(view.getId() == R.id.tvSwedish)
-                conf.locale = svLocale;
-            res.updateConfiguration(conf, dm);
-            DatabaseHelper.getInstance(getContext()).setTable(res.getString(R.string.table));
+                language = "sv";
 
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putString("language", language);
+            editor.apply();
             getActivity().finish();
             startActivity(getActivity().getIntent());
         }
