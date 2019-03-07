@@ -47,18 +47,6 @@ public class ActivityHospitalInfo extends AppCompatActivity {
         website = hospital.getWebsite();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.d("Tag", "On Resume");
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.d("Tag", "On Start");
-    }
-
     public void openLink(View view) {
         //Method to go to health centre's website when button is clicked
         Uri url = Uri.parse(website);
@@ -92,12 +80,13 @@ public class ActivityHospitalInfo extends AppCompatActivity {
 
         public void onDateSet(DatePicker view, int year, int month, int day) {
             Calendar input = Calendar.getInstance();
-            input.set(year, month, day);
+            //Month count starts at 0 in the Calendar class for some reason, so we add 1.
+            input.set(year, month+1, day);
             Log.d("tag", String.valueOf(input.getTimeInMillis()));
             Log.d("tag", String.valueOf(System.currentTimeMillis()));
             if(input.getTimeInMillis() >= (System.currentTimeMillis()-10)){
                 Reminder.getInstance().setYear(String.valueOf(year));
-                Reminder.getInstance().setMonth(String.valueOf(month));
+                Reminder.getInstance().setMonth(String.valueOf(month+1));
                 Reminder.getInstance().setDay(String.valueOf(day));
                 DialogFragment timePicker = new TimePickerFragment();
                 timePicker.show(getFragmentManager(), "timePicker");

@@ -8,14 +8,23 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashSet;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static DatabaseHelper dbHelper;
@@ -213,7 +222,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.update("sv_terveysasema", values, KEY_ID + " = " + id, null);
     }
 
-    public ArrayList<Hospital> getReminders(){
+    public ArrayList<Hospital> getReminders() throws ParseException {
+        updateReminders();
         ArrayList<Hospital> reminders = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
         String selectQuery = "SELECT " + KEY_ID + ", " + KEY_NAME + ", " + KEY_APPOINTMENT + " FROM " + this.currentTable + " WHERE " + KEY_APPOINTMENT + " IS NOT NULL ORDER BY " + KEY_APPOINTMENT;
@@ -228,6 +238,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         return reminders;
+    }
+
+    public void updateReminders() throws ParseException {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = "SELECT " + KEY_ID + ", " + KEY_APPOINTMENT + " FROM " + this.currentTable + " WHERE " + KEY_APPOINTMENT + " IS NOT NULL";
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        if(cursor != null && cursor.moveToFirst()) {
+            do {
+                String date = cursor.getString(cursor.getColumnIndex(KEY_APPOINTMENT));
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                sdf.setTimeZone(TimeZone.getTimeZone("GMT+2"));
+                if (sdf.parse(date).before(new Date())) {
+                    setReminder(cursor.getInt(cursor.getColumnIndex(KEY_ID)), null);
+                }
+            } while (cursor.moveToNext());
+        }
     }
 
     public void setTable(String table){

@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.text.ParseException;
 import java.util.List;
 
 public class ActivityRemindersList extends AppCompatActivity {
@@ -21,7 +22,11 @@ public class ActivityRemindersList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reminders_list);
         ListView lv = findViewById(R.id.lvReminders);
-        lv.setAdapter(new myCustomAdapter(this, R.layout.custom_reminders_layout, DatabaseHelper.getInstance(this).getReminders()));
+        try {
+            lv.setAdapter(new myCustomAdapter(this, R.layout.custom_reminders_layout, DatabaseHelper.getInstance(this).getReminders()));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
