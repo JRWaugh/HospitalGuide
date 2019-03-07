@@ -32,7 +32,7 @@ public class BlankFragment extends Fragment {
         conf.locale = new Locale(language);
         res.updateConfiguration(conf, res.getDisplayMetrics());
         DatabaseHelper.getInstance(getContext()).setTable(res.getString(R.string.table));
-        
+
         //Creates database (or opens database if already created)
         try {
             DatabaseHelper.getInstance(getContext()).createDatabase();
