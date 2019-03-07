@@ -1,7 +1,6 @@
 package com.example.hospitalguide;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -19,8 +18,6 @@ public class ActivityHospitalSearch extends AppCompatActivity {
     Hospital hospital;
     AutoCompleteTextView textSearch;
     String selectedRegion;
-    //Not currently used. Not sure what to save with it yet.
-    private SharedPreferences sharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -8,6 +8,7 @@ import android.database.SQLException;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +28,7 @@ public class BlankFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_blank, container, false);
 
         sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        language = sharedPref.getString("language", Locale.getDefault().getDisplayLanguage());
+        language = sharedPref.getString("language", "en");
         Resources res = this.getActivity().getResources();
         Configuration conf = res.getConfiguration();
         Locale locale = new Locale(language);
@@ -64,7 +65,8 @@ public class BlankFragment extends Fragment {
         super.onResume();
         //This is to make sure the Locale stays the same when pressing the back button.
         String oldLanguage = language;
-        language = sharedPref.getString("language", Locale.getDefault().getDisplayLanguage());
+        Log.d("tag", "nasty shit");
+        language = sharedPref.getString("language", "en");
         if (!oldLanguage.equals(language)){
             getActivity().finish();
             startActivity(getActivity().getIntent());

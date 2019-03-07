@@ -170,7 +170,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             } while(cursor.moveToNext());
         }
         cursor.close();
-
         db.close();
         return hospitalList;
     }
@@ -190,7 +189,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             } while(cursor.moveToNext());
         }
         cursor.close();
-
         db.close();
         return hospitalList;
     }
@@ -208,7 +206,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             hospital.setWebsite(cursor.getString(3));
         }
         cursor.close();
-
         db.close();
         return hospital;
     }
@@ -220,6 +217,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.update("en_terveysasema", values, KEY_ID + " = " + id, null);
         db.update("fi_terveysasema", values, KEY_ID + " = " + id, null);
         db.update("sv_terveysasema", values, KEY_ID + " = " + id, null);
+        db.close();
     }
 
     public ArrayList<Hospital> getReminders() throws ParseException {
@@ -237,6 +235,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 reminders.add(hospital);
             } while (cursor.moveToNext());
         }
+        cursor.close();
+        db.close();
         return reminders;
     }
 
@@ -255,6 +255,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 }
             } while (cursor.moveToNext());
         }
+        cursor.close();
+        db.close();
     }
 
     public void setTable(String table){
