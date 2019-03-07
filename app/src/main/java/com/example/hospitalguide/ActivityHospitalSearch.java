@@ -2,17 +2,14 @@ package com.example.hospitalguide;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.SQLException;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Spinner;
-
-import java.io.IOException;
 
 public class ActivityHospitalSearch extends AppCompatActivity {
     Spinner locations;

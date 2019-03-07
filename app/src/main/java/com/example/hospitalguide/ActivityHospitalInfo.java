@@ -7,16 +7,13 @@ import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
-import android.provider.ContactsContract;
+import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.text.Layout;
 import android.text.util.Linkify;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -41,7 +38,7 @@ public class ActivityHospitalInfo extends AppCompatActivity {
         name.setText(hospital.toString());
 
         TextView address = findViewById(R.id.tvAddress);
-
+        address.setText(hospital.getAddress());
 
         TextView phone = findViewById(R.id.tvPhone);
         phone.append(hospital.getPhone());
