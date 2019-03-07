@@ -3,12 +3,15 @@ package com.example.hospitalguide;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Spinner;
+
+import java.util.ArrayList;
 
 public class ActivityHospitalSearch extends AppCompatActivity {
     Spinner locations;
@@ -57,7 +60,9 @@ public class ActivityHospitalSearch extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), ActivityHospitalList.class);
-                intent.putExtra("region", selectedRegion);
+                //Builds a list of Hospital IDs to be sent to ActivityHospitalList
+                ArrayList<Integer> terveysasemat = DatabaseHelper.getInstance(view.getContext()).getIDsByRegion(selectedRegion);
+                intent.putIntegerArrayListExtra("terveysasemat", terveysasemat);
                 startActivity(intent);
             }
         });

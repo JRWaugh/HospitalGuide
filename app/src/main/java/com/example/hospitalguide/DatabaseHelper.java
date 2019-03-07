@@ -155,23 +155,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return regions;
     }
 
-    public ArrayList<Hospital> getTerveysasemat(String selectedRegion) {
-        ArrayList<Hospital> hospitalList = new ArrayList<>();
-        String selectQuery = "SELECT " + KEY_ID + ", " + KEY_NAME + " FROM " + currentTable + " WHERE " + KEY_REGION + " = '" + selectedRegion + "'";
+    public ArrayList<Integer> getIDsByRegion(String selectedRegion) {
+        ArrayList<Integer> idList = new ArrayList<>();
+        String selectQuery = "SELECT " + KEY_ID + " FROM " + currentTable + " WHERE " + KEY_REGION + " = '" + selectedRegion + "'";
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.rawQuery(selectQuery, null);
         if(cursor != null && cursor.moveToFirst()){
             do{
-                Hospital hospital = new Hospital();
-                hospital.setId(cursor.getInt(cursor.getColumnIndex(KEY_ID)));
-                hospital.setName(cursor.getString(cursor.getColumnIndex(KEY_NAME)));
-                hospitalList.add(hospital);
+                idList.add(cursor.getInt(0));
             } while(cursor.moveToNext());
         }
         cursor.close();
         db.close();
-        return hospitalList;
+        return idList;
     }
 
     public ArrayList<Hospital> getAllTerveysasemat(){
