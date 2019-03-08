@@ -11,12 +11,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.util.Linkify;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -72,6 +70,7 @@ public class ActivityHospitalInfo extends AppCompatActivity {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
+            reminder.setSeconds(59);
             if(reminder.compareTo(new Date()) < 0)
                 DatabaseHelper.getInstance(this).setReminder(hospital.getId(), null);
             else {
@@ -168,7 +167,7 @@ public class ActivityHospitalInfo extends AppCompatActivity {
             input.setSeconds(59);
             Reminder.getInstance().setHour(String.valueOf(hourOfDay));
             Reminder.getInstance().setMinute(String.valueOf(minute));
-
+            //Compare selected hh/mm to current time. Selected seconds set to 59.
             if(input.compareTo(new Date()) >= 0) {
                 final AlertDialog alertDialog = new AlertDialog.Builder(getActivity()).create();
                 LayoutInflater inflater = getLayoutInflater();
