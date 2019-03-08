@@ -33,6 +33,11 @@ public class ActivityRemindersList extends AppCompatActivity {
             e.printStackTrace();
         }
 
+        if(lv.getAdapter().getCount() == 0){
+            TextView isEmpty = findViewById(R.id.tvEmpty);
+            isEmpty.setVisibility(View.VISIBLE);
+        }
+
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int pos, long l) {

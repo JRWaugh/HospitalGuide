@@ -174,7 +174,7 @@ public class ActivityHospitalInfo extends AppCompatActivity {
                 View layout = inflater.inflate(R.layout.alert_dialog_layout, null);
                 alertDialog.setView(layout);
                 alertDialog.setCancelable(false);
-                alertDialog.setTitle("Confirm Details"); //Needs translating
+                alertDialog.setTitle(getContext().getString(R.string.confirm));
                 TextView healthCentre = layout.findViewById(R.id.tvHealthCentre);
                 TextView address = layout.findViewById(R.id.tvAddress);
                 TextView date = layout.findViewById(R.id.tvDate);
@@ -189,10 +189,10 @@ public class ActivityHospitalInfo extends AppCompatActivity {
                         LocalBroadcastManager.getInstance(getActivity()).sendBroadcast(RTReturn);
                     }
                 });
-                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel",
+                alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, alertDialog.getContext().getString(R.string.cancel),
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(alertDialog.getContext(), alertDialog.getContext().getString(R.string.reminderCancelledToast), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(alertDialog.getContext(), getContext().getString(R.string.reminderCancelledToast), Toast.LENGTH_SHORT).show();
                                 dialog.dismiss();
                             }
                         });

@@ -1,6 +1,5 @@
 package com.example.hospitalguide;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -8,16 +7,14 @@ import android.database.SQLException;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.io.IOException;
 import java.util.Locale;
 
-public class BlankFragment extends Fragment {
+public class BannerFragment extends Fragment {
 
     private SharedPreferences sharedPref;
     private String language;
@@ -25,7 +22,7 @@ public class BlankFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_blank, container, false);
+        View view = inflater.inflate(R.layout.fragment_banner, container, false);
 
         sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
         language = sharedPref.getString("language", "en");
@@ -38,11 +35,7 @@ public class BlankFragment extends Fragment {
         DatabaseHelper.getInstance(getContext()).setTable(res.getString(R.string.table));
 
         //Creates database (or opens database if already created)
-        try {
-            DatabaseHelper.getInstance(getContext()).createDatabase();
-        } catch(IOException ioe){
-            throw new Error("Unable to create database");
-        }
+        DatabaseHelper.getInstance(getContext()).createDatabase();
 
         try {
             DatabaseHelper.getInstance(getContext()).openDataBase();
@@ -65,7 +58,6 @@ public class BlankFragment extends Fragment {
         super.onResume();
         //This is to make sure the Locale stays the same when pressing the back button.
         String oldLanguage = language;
-        Log.d("tag", "nasty shit");
         language = sharedPref.getString("language", "en");
         if (!oldLanguage.equals(language)){
             getActivity().finish();

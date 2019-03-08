@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/sample"
-        android:name="com.example.hospitalguide.BlankFragment"
+        android:name="com.example.hospitalguide.BannerFragment"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -109,7 +109,7 @@
                 android:layout_marginBottom="3dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="Your appointment: "
+                android:text="@string/tvSetReminder"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -145,7 +145,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:text="Cancel" />
+                android:text="@string/cancel" />
 
         </LinearLayout>
     </LinearLayout>/>

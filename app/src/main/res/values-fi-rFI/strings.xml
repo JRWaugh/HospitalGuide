@@ -23,4 +23,8 @@
     <string name="reminder">Aseta muistutus</string>
     <string name="reminderToast">Muistutus tallennettu</string>
     <string name="reminderCancelledToast">Muistutus poistettu</string>
+    <string name="noreminders">Ei muistutuksia</string>
+    <string name="cancel">Peruuta</string>
+    <string name="confirm">Vahvista muistutus</string>
+    <string name="tvSetReminder">Sinun muistutus</string>
 </resources>

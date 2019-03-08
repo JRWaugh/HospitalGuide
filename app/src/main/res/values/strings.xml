@@ -27,6 +27,10 @@
     <string name="reminder">Set Reminder</string>
     <string name="reminderToast">Reminder saved</string>
     <string name="reminderCancelledToast">Reminder cancelled</string>
+    <string name="noreminders">No Reminders</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm Reminder</string>
+    <string name="tvSetReminder">Your reminder:</string>
 
     <!-- TODO: Remove or change this placeholder text -->
 </resources>

@@ -23,4 +23,8 @@
     <string name="reminder">Skapa påminnelse</string>
     <string name="reminderToast">"Påminnelse skapad "</string>
     <string name="reminderCancelledToast">Påminnelse raderad</string>
+    <string name="noreminders">Inga påminnelser</string>
+    <string name="cancel">Avbryt</string>
+    <string name="confirm">Godkänn påminnelse</string>
+    <string name="tvSetReminder">Din påminnelse</string>
 </resources>

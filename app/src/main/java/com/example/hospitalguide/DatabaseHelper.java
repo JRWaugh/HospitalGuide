@@ -8,7 +8,6 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -16,14 +15,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.Locale;
 import java.util.TimeZone;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
@@ -64,7 +59,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-    public void createDatabase() throws IOException{
+    public void createDatabase() {
 
         boolean dbExist = checkDataBase();
 
@@ -246,10 +241,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         if(cursor != null && cursor.moveToFirst()) {
             do {
-                String date = cursor.getString(cursor.getColumnIndex(KEY_APPOINTMENT));
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                Date date = sdf.parse(cursor.getString(cursor.getColumnIndex(KEY_APPOINTMENT)));
                 sdf.setTimeZone(TimeZone.getTimeZone("GMT+2"));
-                if (sdf.parse(date).before(new Date())) {
+                date.setSeconds(59);
+                if (date.before(new Date())) {
                     setReminder(cursor.getInt(cursor.getColumnIndex(KEY_ID)), null);
                 }
             } while (cursor.moveToNext());
