@@ -193,14 +193,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Hospital getTerveysasema(int id) {
         Hospital hospital = new Hospital();
         SQLiteDatabase db = this.getReadableDatabase();
-        String selectQuery = "SELECT " + KEY_NAME + ", " + KEY_ADDRESS + ", " + KEY_PHONE + ", " + KEY_WEBSITE + " FROM " + this.currentTable + " WHERE " + KEY_ID + " = " + id;
+        String selectQuery = "SELECT " + KEY_ID + ", " + KEY_NAME + ", " + KEY_ADDRESS + ", " + KEY_PHONE + ", " + KEY_WEBSITE + ", " + KEY_APPOINTMENT + " FROM " + this.currentTable + " WHERE " + KEY_ID + " = " + id;
 
         Cursor cursor = db.rawQuery(selectQuery, null);
         if(cursor != null && cursor.moveToFirst()) {
-            hospital.setName(cursor.getString(0));
-            hospital.setAddress(cursor.getString(1));
-            hospital.setPhone(cursor.getString(2));
-            hospital.setWebsite(cursor.getString(3));
+            hospital.setId(cursor.getInt(0));
+            hospital.setName(cursor.getString(1));
+            hospital.setAddress(cursor.getString(2));
+            hospital.setPhone(cursor.getString(3));
+            hospital.setWebsite(cursor.getString(4));
+            hospital.setAppointment(cursor.getString(5));
         }
         cursor.close();
         db.close();

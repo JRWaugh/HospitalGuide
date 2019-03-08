@@ -21,6 +21,11 @@ public class ActivityRemindersList extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reminders_list);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         ListView lv = findViewById(R.id.lvReminders);
         try {
             lv.setAdapter(new myCustomAdapter(this, R.layout.custom_reminders_layout, DatabaseHelper.getInstance(this).getReminders()));
@@ -39,7 +44,7 @@ public class ActivityRemindersList extends AppCompatActivity {
         });
     }
 
-    public class myCustomAdapter extends ArrayAdapter<Hospital> {
+    private class myCustomAdapter extends ArrayAdapter<Hospital> {
 
         //Influenced by https://stackoverflow.com/questions/38194830/how-do-i-align-text-to-the-left-and-right-at-the-same-time-in-a-listview
         public myCustomAdapter(Context context, int textViewResourceId) {
@@ -59,7 +64,6 @@ public class ActivityRemindersList extends AppCompatActivity {
                 LayoutInflater vi = LayoutInflater.from(getContext());
                 view = vi.inflate(R.layout.custom_reminders_layout, null);
             }
-
             Hospital hospital = getItem(position);
 
             if (hospital != null) {
@@ -67,10 +71,8 @@ public class ActivityRemindersList extends AppCompatActivity {
                 TextView date = view.findViewById(R.id.tvReminder);
                 name.setText(hospital.toString());
                 date.setText(hospital.getAppointment());
-
             }
             return view;
         }
-
     }
 }

@@ -27,4 +27,6 @@
     <string name="reminder">Set Reminder</string>
     <string name="reminderToast">Reminder saved</string>
     <string name="reminderCancelledToast">Reminder cancelled</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
 </resources>
