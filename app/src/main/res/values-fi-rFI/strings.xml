@@ -17,7 +17,7 @@
     <string name="date">"Päivämäärä: "</string>
     <string name="health_centre">"Terveysasema: "</string>
     <string name="appointments">Näytä muistutukset</string>
-    <string name="hintSearch">Etsiä terveysasemia</string>
+    <string name="hintSearch">Etsi terveysasemia</string>
     <string name="textSearchTitle">Hae nimen mukaan:</string>
     <string name="spinnerSearchTitle">Etsi alueittain:</string>
     <string name="reminder">Aseta muistutus</string>
@@ -27,4 +27,6 @@
     <string name="cancel">Peruuta</string>
     <string name="confirm">Vahvista muistutus</string>
     <string name="tvSetReminder">Sinun muistutus</string>
+    <string name="confirmCancel">Peruuta tämä muistutus?</string>
+    <string name="invalid">Virheellinen päivämäärä</string>
 </resources>

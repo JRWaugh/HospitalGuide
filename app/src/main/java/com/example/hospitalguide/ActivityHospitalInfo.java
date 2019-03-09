@@ -23,7 +23,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 
 public class ActivityHospitalInfo extends AppCompatActivity {
     private String website;
@@ -31,6 +30,7 @@ public class ActivityHospitalInfo extends AppCompatActivity {
     private DatePickerDialog datePicker;
     private TimePickerDialog timePicker;
     private AlertDialog alertDialog;
+    private AlertDialog cancelDialog;
     private Context mContext;
     private LinearLayout reminderBox;
     //Creates a Calendar to hold time selected in fragments
@@ -66,10 +66,8 @@ public class ActivityHospitalInfo extends AppCompatActivity {
                 input.set(year, month, day, 23, 59, 59);
                 if(input.getTime().after(new Date())){
                     timePicker.show();
-                } else {
-                    Toast toast = Toast.makeText(view.getContext(), "Invalid Date Selected", Toast.LENGTH_SHORT);
-                    toast.show();
-                }
+                } else
+                    Toast.makeText(view.getContext(), getString(R.string.invalid), Toast.LENGTH_SHORT).show();
             }
         }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
 
@@ -98,12 +96,13 @@ public class ActivityHospitalInfo extends AppCompatActivity {
                     alertDialog.setView(layout);
                     alertDialog.setCancelable(false);
                     alertDialog.setTitle(getString(R.string.confirm));
-                    alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
+                    alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, getString(android.R.string.ok), new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             //Creates a string in a format suited for the database
                             String databaseDateString = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(input.getTime());
                             DatabaseHelper.getInstance(mContext).setReminder(hospital.getId(), databaseDateString);
                             hospital.setAppointment(databaseDateString);
+                            Toast.makeText(mContext, getString(R.string.reminderToast), Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
                             displayReminder();
                         }
@@ -115,10 +114,8 @@ public class ActivityHospitalInfo extends AppCompatActivity {
                         }
                     });
                     alertDialog.show();
-                } else {
-                    Toast toast = Toast.makeText(view.getContext(), "Invalid Date Selected", Toast.LENGTH_SHORT);
-                    toast.show();
-                }
+                } else
+                    Toast.makeText(view.getContext(), getString(R.string.invalid), Toast.LENGTH_SHORT).show();
             }
         }, Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), true);
     }
@@ -142,7 +139,6 @@ public class ActivityHospitalInfo extends AppCompatActivity {
     }
 
     public void displayReminder(){
-        Log.d("tag", "Called!");
         Date reminder = null;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         try {
@@ -151,13 +147,11 @@ public class ActivityHospitalInfo extends AppCompatActivity {
             e.printStackTrace();
         }
         reminder.setSeconds(59);
-        Log.d("tag", reminder.toString());
         if(reminder.before(new Date())) {
             Log.d("tag", "If Called!");
             DatabaseHelper.getInstance(this).setReminder(hospital.getId(), null);
             reminderBox.setVisibility(View.INVISIBLE);
         } else {
-            Log.d("tag", "Else Called!");
             //These two lines chop off the end of the Date string so it looks nicer.
             String display = reminder.toString().split("GMT")[0];
             display = display.substring(0, display.length() - 4);
@@ -168,7 +162,21 @@ public class ActivityHospitalInfo extends AppCompatActivity {
     }
 
     public void cancelReminder(View view) {
-        DatabaseHelper.getInstance(this).setReminder(hospital.getId(), null);
-        reminderBox.setVisibility(View.INVISIBLE);
+        final AlertDialog.Builder cancelDialog = new AlertDialog.Builder(mContext);
+        cancelDialog.setTitle(getString(R.string.confirmCancel));
+        cancelDialog.setCancelable(false);
+        cancelDialog.setPositiveButton(getString(android.R.string.yes), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int i) {
+                DatabaseHelper.getInstance(mContext).setReminder(hospital.getId(), null);
+                reminderBox.setVisibility(View.INVISIBLE);
+                dialog.dismiss();
+            }
+        }).setNegativeButton(getString(android.R.string.no), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int i) {
+                dialog.dismiss();
+            }
+        });
+        cancelDialog.show();
     }
 }

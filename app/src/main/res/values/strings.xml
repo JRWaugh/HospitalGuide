@@ -11,7 +11,7 @@
     <string name="fi">fi</string>
     <string name="en">en</string>
     <string name="phone">"Phone: "</string>
-    <string name="website">VISIT WEBSITE</string>
+    <string name="website">Visit Website</string>
     <string-array name="cities">
         <item>@string/helsinki</item>
         <item>@string/vantaa</item>
@@ -31,9 +31,6 @@
     <string name="cancel">Cancel</string>
     <string name="confirm">Confirm Reminder</string>
     <string name="tvSetReminder">Your reminder:</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="confirmCancel">Cancel this reminder?</string>
+    <string name="invalid">Invalid Date</string>
 </resources>

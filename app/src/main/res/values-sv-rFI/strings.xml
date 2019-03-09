@@ -16,7 +16,7 @@
     <string name="address">"Adress: "</string>
     <string name="date">"Datum: "</string>
     <string name="health_centre">"Hälsostation: "</string>
-    <string name="appointments">Visa påminnelse</string>
+    <string name="appointments">Visa påminnelser</string>
     <string name="hintSearch">Sök hälsostationer</string>
     <string name="textSearchTitle">"Sök efter namn: "</string>
     <string name="spinnerSearchTitle">Sök efter region:</string>
@@ -27,4 +27,6 @@
     <string name="cancel">Avbryt</string>
     <string name="confirm">Godkänn påminnelse</string>
     <string name="tvSetReminder">Din påminnelse</string>
+    <string name="confirmCancel">Avbryt denna påminnelse?</string>
+    <string name="invalid">Ogiltigt datum</string>
 </resources>
