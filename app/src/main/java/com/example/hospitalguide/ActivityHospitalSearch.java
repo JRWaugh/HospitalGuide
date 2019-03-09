@@ -27,6 +27,8 @@ public class ActivityHospitalSearch extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         locations = findViewById(R.id.spCities);
+        locations.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, getResources().getStringArray(R.array.cities)));
+
         suburbs = findViewById(R.id.spRegions);
         buttonSearch = findViewById(R.id.btnSearch);
         reminder = findViewById(R.id.btnReminder);

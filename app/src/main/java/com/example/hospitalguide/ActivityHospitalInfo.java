@@ -23,6 +23,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class ActivityHospitalInfo extends AppCompatActivity {
     private String website;
@@ -30,19 +31,18 @@ public class ActivityHospitalInfo extends AppCompatActivity {
     private DatePickerDialog datePicker;
     private TimePickerDialog timePicker;
     private AlertDialog alertDialog;
-    private String reminderDate;
     private Context mContext;
     private LinearLayout reminderBox;
+    //Creates a Calendar to hold time selected in fragments
+    private Calendar input;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hospital_info);
-        LayoutInflater inflater = getLayoutInflater();
         reminderBox = findViewById(R.id.layoutReminder);
-
+        input = Calendar.getInstance();
         mContext = this;
-        reminderDate = "";
 
         int selectedHospital = getIntent().getIntExtra("hospital", 0);
         hospital = DatabaseHelper.getInstance(this).getTerveysasema(selectedHospital);
@@ -60,39 +60,33 @@ public class ActivityHospitalInfo extends AppCompatActivity {
         Linkify.addLinks(phone, Linkify.PHONE_NUMBERS);
         website = hospital.getWebsite();
 
-        if(hospital.getAppointment() != null)
-            displayReminder();
-
-        final Calendar c = Calendar.getInstance();
-
         datePicker = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             public void onDateSet(DatePicker view, int year, int month, int day) {
-                Calendar input = Calendar.getInstance();
-                //Calendar class counts months from 0, so the number must be incremented
-                month++;
                 //I've set hh/mm/ss so that the if statement below won't fail
                 input.set(year, month, day, 23, 59, 59);
                 if(input.getTime().after(new Date())){
-                    reminderDate = year + "-" + month + "-" + day + " ";
                     timePicker.show();
                 } else {
                     Toast toast = Toast.makeText(view.getContext(), "Invalid Date Selected", Toast.LENGTH_SHORT);
                     toast.show();
                 }
             }
-        }, c.get(Calendar.YEAR), c.get(Calendar.MONTH), c.get(Calendar.DAY_OF_MONTH));
+        }, Calendar.getInstance().get(Calendar.YEAR), Calendar.getInstance().get(Calendar.MONTH), Calendar.getInstance().get(Calendar.DAY_OF_MONTH));
 
         timePicker = new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hour, int minute) {
-                Date input = new Date();
-                input.setHours(hour);
-                input.setMinutes(minute);
-                input.setSeconds(59);
-                reminderDate += hour + ":" + minute;
+                //Date input = new Date();
+                input.set(Calendar.HOUR_OF_DAY, hour);
+                input.set(Calendar.MINUTE, minute);
+                input.set(Calendar.SECOND, 59);
+
                 //Compare selected hh/mm to current time. Selected seconds set to 59.
-                if(input.after(new Date())) {
+                if(input.getTime().after(new Date())) {
+                    //Creates a string in a format suited for human readability
+                    String alertDateString = new SimpleDateFormat("dd-MM-yyyy HH:mm").format(input.getTime());
                     alertDialog = new AlertDialog.Builder(mContext).create();
+                    //Grabs the layout for this dialog so that the views can be accessed
                     LayoutInflater inflater = getLayoutInflater();
                     View layout = inflater.inflate(R.layout.alert_dialog_layout, null);
                     TextView alertHealthCentre = layout.findViewById(R.id.tvHealthCentre);
@@ -100,14 +94,16 @@ public class ActivityHospitalInfo extends AppCompatActivity {
                     TextView alertDate = layout.findViewById(R.id.tvDate);
                     alertHealthCentre.setText(hospital.toString());
                     alertAddress.setText(hospital.getAddress());
-                    alertDate.setText(reminderDate);
+                    alertDate.setText(alertDateString);
                     alertDialog.setView(layout);
                     alertDialog.setCancelable(false);
                     alertDialog.setTitle(getString(R.string.confirm));
                     alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            DatabaseHelper.getInstance(mContext).setReminder(hospital.getId(), reminderDate);
-                            hospital.setAppointment(reminderDate);
+                            //Creates a string in a format suited for the database
+                            String databaseDateString = new SimpleDateFormat("yyyy-MM-dd HH:mm").format(input.getTime());
+                            DatabaseHelper.getInstance(mContext).setReminder(hospital.getId(), databaseDateString);
+                            hospital.setAppointment(databaseDateString);
                             dialog.dismiss();
                             displayReminder();
                         }
@@ -124,7 +120,14 @@ public class ActivityHospitalInfo extends AppCompatActivity {
                     toast.show();
                 }
             }
-        }, c.get(Calendar.HOUR_OF_DAY), c.get(Calendar.MINUTE), true);
+        }, Calendar.getInstance().get(Calendar.HOUR_OF_DAY), Calendar.getInstance().get(Calendar.MINUTE), true);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(hospital.getAppointment() != null)
+            displayReminder();
     }
 
     public void setReminder(View v) {
@@ -139,6 +142,7 @@ public class ActivityHospitalInfo extends AppCompatActivity {
     }
 
     public void displayReminder(){
+        Log.d("tag", "Called!");
         Date reminder = null;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         try {
@@ -148,9 +152,12 @@ public class ActivityHospitalInfo extends AppCompatActivity {
         }
         reminder.setSeconds(59);
         Log.d("tag", reminder.toString());
-        if(reminder.before(new Date()))
+        if(reminder.before(new Date())) {
+            Log.d("tag", "If Called!");
             DatabaseHelper.getInstance(this).setReminder(hospital.getId(), null);
-        else {
+            reminderBox.setVisibility(View.INVISIBLE);
+        } else {
+            Log.d("tag", "Else Called!");
             //These two lines chop off the end of the Date string so it looks nicer.
             String display = reminder.toString().split("GMT")[0];
             display = display.substring(0, display.length() - 4);

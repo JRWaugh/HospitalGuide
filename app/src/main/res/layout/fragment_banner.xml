@@ -1,41 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:gravity="right">
+    android:background="@color/colorPrimaryDark"
+    android:orientation="horizontal">
+
+    <ImageButton
+        android:id="@+id/btnHome"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@null"
+        app:srcCompat="@drawable/ic_baseline_home_24px" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="right">
 
         <TextView
             android:id="@+id/tvEnglish"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="8dp"
             android:clickable="true"
             android:focusable="true"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_marginRight="10dp"
-            android:text="@string/en" />
+            android:gravity="center_vertical"
+            android:text="@string/en"
+            android:textColor="@android:color/background_light"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvSwedish"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="12dp"
             android:clickable="true"
             android:focusable="true"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_marginRight="10dp"
-            android:text="@string/sv" />
+            android:gravity="center_vertical"
+            android:text="@string/sv"
+            android:textColor="@android:color/background_light"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tvFinnish"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="16dp"
             android:clickable="true"
             android:focusable="true"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_marginRight="10dp"
-            android:text="@string/fi" />
-    />
+            android:gravity="center_vertical"
+            android:text="@string/fi"
+            android:textColor="@android:color/background_light"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 </LinearLayout>

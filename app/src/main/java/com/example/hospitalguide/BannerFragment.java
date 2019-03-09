@@ -1,5 +1,7 @@
 package com.example.hospitalguide;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -7,9 +9,11 @@ import android.database.SQLException;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -18,6 +22,7 @@ public class BannerFragment extends Fragment {
 
     private SharedPreferences sharedPref;
     private String language;
+    private Intent intent;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,6 +55,15 @@ public class BannerFragment extends Fragment {
         btnFinnish.setOnClickListener(listener);
         TextView btnSwedish = view.findViewById(R.id.tvSwedish);
         btnSwedish.setOnClickListener(listener);
+
+        ImageButton btnHome = view.findViewById(R.id.btnHome);
+        btnHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), ActivityHospitalSearch.class);
+                startActivity(intent);
+            }
+        });
         return view;
     }
 
@@ -63,7 +77,6 @@ public class BannerFragment extends Fragment {
             getActivity().finish();
             startActivity(getActivity().getIntent());
         }
-
     }
 
     public class MyClickListener implements View.OnClickListener {
