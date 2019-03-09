@@ -2,25 +2,19 @@ package com.example.hospitalguide;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.app.TimePickerDialog;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.text.util.Linkify;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -29,7 +23,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 
 public class ActivityHospitalInfo extends AppCompatActivity {
     private String website;
@@ -39,11 +32,15 @@ public class ActivityHospitalInfo extends AppCompatActivity {
     private AlertDialog alertDialog;
     private String reminderDate;
     private Context mContext;
+    private LinearLayout reminderBox;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hospital_info);
+        LayoutInflater inflater = getLayoutInflater();
+        reminderBox = findViewById(R.id.layoutReminder);
+
         mContext = this;
         reminderDate = "";
 
@@ -63,37 +60,8 @@ public class ActivityHospitalInfo extends AppCompatActivity {
         Linkify.addLinks(phone, Linkify.PHONE_NUMBERS);
         website = hospital.getWebsite();
 
-        View reminderBox = findViewById(R.id.layoutReminder);
-        if(hospital.getAppointment() != null){
-            Date reminder = null;
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", new Locale("sv"));
-            try {
-                reminder = sdf.parse(hospital.getAppointment());
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-            reminder.setSeconds(59);
-            if(reminder.compareTo(new Date()) < 0)
-                DatabaseHelper.getInstance(this).setReminder(hospital.getId(), null);
-            else {
-                //These two lines chop off the end of the Date string so it looks nicer.
-                String display = reminder.toString().split("GMT")[0];
-                display = display.substring(0, display.length() - 4);
-                TextView time = findViewById(R.id.tvTime);
-                time.setText(display);
-                reminderBox.setVisibility(View.VISIBLE);
-            }
-        }
-
-        Button buttonCancel = findViewById(R.id.btnCancel);
-        buttonCancel.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                DatabaseHelper.getInstance(view.getContext()).setReminder(hospital.getId(), null);
-                finish();
-                startActivity(getIntent());
-            }
-        });
+        if(hospital.getAppointment() != null)
+            displayReminder();
 
         final Calendar c = Calendar.getInstance();
 
@@ -139,8 +107,9 @@ public class ActivityHospitalInfo extends AppCompatActivity {
                     alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             DatabaseHelper.getInstance(mContext).setReminder(hospital.getId(), reminderDate);
+                            hospital.setAppointment(reminderDate);
                             dialog.dismiss();
-                            recreate();
+                            displayReminder();
                         }
                     });
                     alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, alertDialog.getContext().getString(R.string.cancel), new DialogInterface.OnClickListener() {
@@ -160,12 +129,39 @@ public class ActivityHospitalInfo extends AppCompatActivity {
 
     public void setReminder(View v) {
         datePicker.show();
-    };
+    }
 
     public void openLink(View view) {
         //Method to go to health centre's website when button is clicked
         Uri url = Uri.parse(website);
         Intent launchBrowser = new Intent(Intent.ACTION_VIEW, url);
         startActivity(launchBrowser);
+    }
+
+    public void displayReminder(){
+        Date reminder = null;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        try {
+            reminder = sdf.parse(hospital.getAppointment());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        reminder.setSeconds(59);
+        Log.d("tag", reminder.toString());
+        if(reminder.before(new Date()))
+            DatabaseHelper.getInstance(this).setReminder(hospital.getId(), null);
+        else {
+            //These two lines chop off the end of the Date string so it looks nicer.
+            String display = reminder.toString().split("GMT")[0];
+            display = display.substring(0, display.length() - 4);
+            TextView time = findViewById(R.id.tvTime);
+            time.setText(display);
+            reminderBox.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public void cancelReminder(View view) {
+        DatabaseHelper.getInstance(this).setReminder(hospital.getId(), null);
+        reminderBox.setVisibility(View.INVISIBLE);
     }
 }
