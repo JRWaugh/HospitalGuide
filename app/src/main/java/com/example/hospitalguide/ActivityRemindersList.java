@@ -11,9 +11,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import java.text.ParseException;
 import java.util.List;
+
+/** An activity which displays all reminders which have been set by the user.*/
 
 public class ActivityRemindersList extends AppCompatActivity {
 
@@ -50,19 +51,14 @@ public class ActivityRemindersList extends AppCompatActivity {
     }
 
     private class myCustomAdapter extends ArrayAdapter<Hospital> {
-
-        //Influenced by https://stackoverflow.com/questions/38194830/how-do-i-align-text-to-the-left-and-right-at-the-same-time-in-a-listview
-        public myCustomAdapter(Context context, int textViewResourceId) {
-            super(context, textViewResourceId);
-        }
-
+        /* Influenced by https://stackoverflow.com/questions/38194830/how-do-i-align-text-to-the-left-and-right-at-the-same-time-in-a-listview
+        A custom adapter was needed so that the name AND reminder date would be displayed in the same view*/
         myCustomAdapter(Context context, int resource, List<Hospital> hc) {
             super(context, resource, hc);
         }
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-
             View view = convertView;
 
             if (view == null) {

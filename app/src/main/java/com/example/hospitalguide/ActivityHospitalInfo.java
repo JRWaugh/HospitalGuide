@@ -17,12 +17,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+
+/** This activity is accessed after a health centre has been selected in another activity.
+ * This activity will search the Database for the health centre selected and display all information
+ */
 
 public class ActivityHospitalInfo extends AppCompatActivity {
     private String website;
@@ -32,7 +35,8 @@ public class ActivityHospitalInfo extends AppCompatActivity {
     private AlertDialog alertDialog;
     private Context mContext;
     private LinearLayout reminderBox;
-    //Creates a Calendar to hold time selected in fragments
+
+    //Creates a Calendar to hold time selected in calendar/clock dialogs.
     private Calendar input;
 
     @Override
@@ -165,6 +169,8 @@ public class ActivityHospitalInfo extends AppCompatActivity {
         cancelDialog.setCancelable(false);
         cancelDialog.setPositiveButton(getString(android.R.string.yes), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int i) {
+                /*If confirmation is given, the reminder in the database will be cleared and the
+                reminderBox layout will be set back to invisible.*/
                 DatabaseHelper.getInstance(mContext).setReminder(hospital.getId(), null);
                 reminderBox.setVisibility(View.INVISIBLE);
                 dialog.dismiss();

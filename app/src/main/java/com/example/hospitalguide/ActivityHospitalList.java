@@ -7,9 +7,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
 import java.util.ArrayList;
 
+/** An android activity which provides a list of hospitals in a selected city/region. */
 public class ActivityHospitalList extends AppCompatActivity {
 
     @Override

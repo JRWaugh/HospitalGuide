@@ -9,8 +9,10 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Spinner;
-
 import java.util.ArrayList;
+
+/** The main activity of this application. It provides users with a search box and drop-down lists
+ * to find the health centre they are looking for. This activity also provides access to all reminders set*/
 
 public class ActivityHospitalSearch extends AppCompatActivity {
     private Spinner locations;
@@ -36,12 +38,11 @@ public class ActivityHospitalSearch extends AppCompatActivity {
         textSearch.setThreshold(2);
         textSearch.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, DatabaseHelper.getInstance(this).getAllTerveysasemat()));
 
-        //Locations spinner is populated in XML, via String resources.
         locations.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long l) {
                 String selectedCity = parent.getItemAtPosition(pos).toString();
-                //Populates suburbs spinner based on location selected in locations spinner.
+                //Populates suburbs spinner based on location selected in this spinner.
                 suburbs.setAdapter(new ArrayAdapter<>(parent.getContext(), android.R.layout.simple_spinner_dropdown_item, DatabaseHelper.getInstance(parent.getContext()).getRegions(selectedCity)));
             }
             @Override
@@ -51,6 +52,7 @@ public class ActivityHospitalSearch extends AppCompatActivity {
         suburbs.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long l) {
+                //Sets selectedRegion string to value of the region selected in this spinner.
                 selectedRegion = parent.getItemAtPosition(pos).toString();
             }
             @Override
@@ -61,7 +63,9 @@ public class ActivityHospitalSearch extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(view.getContext(), ActivityHospitalList.class);
-                //Builds a list of Hospital IDs to be sent to ActivityHospitalList
+                /*Builds a list of health centres IDs to be sent to ActivityHospitalList, based on the
+                health centres in the selected region. It is necessary to convert to send IDs
+                instead of the string so that the language can be switched in ActivityHospitalList*/
                 ArrayList<Integer> terveysasemat = DatabaseHelper.getInstance(view.getContext()).getIDsByRegion(selectedRegion);
                 intent.putIntegerArrayListExtra("terveysasemat", terveysasemat);
                 startActivity(intent);
@@ -69,6 +73,7 @@ public class ActivityHospitalSearch extends AppCompatActivity {
         });
 
         textSearch.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            //The listener for the AutoCompleteTextView search box.
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int pos, long l) {
                 hospital = (Hospital)parent.getItemAtPosition(pos);

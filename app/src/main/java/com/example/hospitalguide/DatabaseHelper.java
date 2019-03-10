@@ -21,6 +21,9 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.TimeZone;
 
+/** A database which holds tables of health centres, along with their location, phone number, website
+ * as well as user made appointment reminders. There are three tables: English, Swedish and Finnish.*/
+
 public class DatabaseHelper extends SQLiteOpenHelper {
     private static DatabaseHelper dbHelper;
     private final Context context;

@@ -13,9 +13,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-
 import java.util.Locale;
 
+/** This fragment is placed in each Activity and acts as a banner for the app. This fragment holds
+ * three buttons to change the language of the app (English, Swedish and Finnish), as well as a home
+ * icon to return the user to the ActivityHospitalSearch activity.*/
 public class BannerFragment extends Fragment {
 
     private SharedPreferences sharedPref;

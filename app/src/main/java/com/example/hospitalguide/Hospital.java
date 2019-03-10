@@ -1,5 +1,7 @@
 package com.example.hospitalguide;
 
+/** A simple class to create objects which can hold the information from a specific row in a table
+ * in the database.*/
 public class Hospital {
     private int id;
     private String name;
@@ -26,7 +28,7 @@ public class Hospital {
 
     @Override
     public String toString(){
-        //Acts as getName. ArrayAdapter calls object's toString method, so this is useful.
+        //Acts as getName. ArrayAdapters calls an object's toString method, so this is useful.
         return this.name;
     }
 
