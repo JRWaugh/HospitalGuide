@@ -12,12 +12,12 @@ public class Hospital {
 
     public Hospital(){}
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public int getId() {
         return this.id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setName(String name){
@@ -30,20 +30,20 @@ public class Hospital {
         return this.name;
     }
 
-    public void setRegion(String region){
-        this.region = region;
-    }
-
     public String getRegion() {
         return this.region;
     }
 
-    public void setCity(String city){
-        this.city = city;
+    public void setRegion(String region){
+        this.region = region;
     }
 
     public String getCity() {
         return this.city;
+    }
+
+    public void setCity(String city){
+        this.city = city;
     }
 
     public String getAddress() {

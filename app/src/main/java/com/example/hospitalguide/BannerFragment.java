@@ -1,6 +1,5 @@
 package com.example.hospitalguide;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -9,7 +8,6 @@ import android.database.SQLException;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +20,6 @@ public class BannerFragment extends Fragment {
 
     private SharedPreferences sharedPref;
     private String language;
-    private Intent intent;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -79,7 +76,7 @@ public class BannerFragment extends Fragment {
         }
     }
 
-    public class MyClickListener implements View.OnClickListener {
+    class MyClickListener implements View.OnClickListener {
         @Override
         public void onClick(View view) {
             String language = "";

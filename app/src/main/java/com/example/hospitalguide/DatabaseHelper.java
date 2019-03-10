@@ -28,9 +28,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private String currentTable;
 
     // Column names
-    static final String KEY_ID = "_id";
-    static final String KEY_NAME = "name";
-    static final String KEY_REGION = "region";
+    private static final String KEY_ID = "_id";
+    private static final String KEY_NAME = "name";
+    private static final String KEY_REGION = "region";
     private static final String KEY_CITY = "city";
     private static final String KEY_ADDRESS = "address";
     private static final String KEY_PHONE = "phone";
@@ -38,7 +38,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String KEY_APPOINTMENT = "appointment";
 
     private static String DATABASE_PATH = "";
-    private static String DATABASE_NAME = "healthcentres.db";
+    private static final String DATABASE_NAME = "healthcentres.db";
     private static final int DATABASE_VERSION = 1;
 
     public static synchronized DatabaseHelper getInstance(Context context) {
@@ -63,8 +63,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         boolean dbExist = checkDataBase();
 
-        if(dbExist){}
-        else{
+        if(!dbExist){
             /*By calling this method, an empty database will be created into the default system path
             of your application so we are gonna be able to overwrite that database with our database.*/
             this.getReadableDatabase();
@@ -94,7 +93,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return checkDB != null;
     }
 
-    public void copyDatabase() throws IOException{
+    private void copyDatabase() throws IOException{
         String db_out_path=context.getDatabasePath(DATABASE_NAME).toString();
         File db_out_file = new File(db_out_path);
 
@@ -234,7 +233,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return reminders;
     }
 
-    public void updateReminders() throws ParseException {
+    private void updateReminders() throws ParseException {
         SQLiteDatabase db = this.getReadableDatabase();
         String selectQuery = "SELECT " + KEY_ID + ", " + KEY_APPOINTMENT + " FROM " + this.currentTable + " WHERE " + KEY_APPOINTMENT + " IS NOT NULL";
         Cursor cursor = db.rawQuery(selectQuery, null);

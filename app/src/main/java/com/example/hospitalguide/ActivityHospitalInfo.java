@@ -10,7 +10,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.util.Linkify;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.DatePicker;
@@ -23,6 +22,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 public class ActivityHospitalInfo extends AppCompatActivity {
     private String website;
@@ -30,7 +30,6 @@ public class ActivityHospitalInfo extends AppCompatActivity {
     private DatePickerDialog datePicker;
     private TimePickerDialog timePicker;
     private AlertDialog alertDialog;
-    private AlertDialog cancelDialog;
     private Context mContext;
     private LinearLayout reminderBox;
     //Creates a Calendar to hold time selected in fragments
@@ -138,7 +137,8 @@ public class ActivityHospitalInfo extends AppCompatActivity {
         startActivity(launchBrowser);
     }
 
-    public void displayReminder(){
+    private void displayReminder(){
+        //Creates a date object from the date string in the database
         Date reminder = null;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         try {
@@ -148,15 +148,13 @@ public class ActivityHospitalInfo extends AppCompatActivity {
         }
         reminder.setSeconds(59);
         if(reminder.before(new Date())) {
-            Log.d("tag", "If Called!");
             DatabaseHelper.getInstance(this).setReminder(hospital.getId(), null);
             reminderBox.setVisibility(View.INVISIBLE);
         } else {
-            //These two lines chop off the end of the Date string so it looks nicer.
-            String display = reminder.toString().split("GMT")[0];
-            display = display.substring(0, display.length() - 4);
+            //Converts the date object back into a human readable string
+            String date = new SimpleDateFormat("d MMM yyyy HH:mm", Locale.getDefault()).format(reminder);
             TextView time = findViewById(R.id.tvTime);
-            time.setText(display);
+            time.setText(date);
             reminderBox.setVisibility(View.VISIBLE);
         }
     }

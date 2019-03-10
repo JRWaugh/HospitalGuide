@@ -13,13 +13,13 @@ import android.widget.Spinner;
 import java.util.ArrayList;
 
 public class ActivityHospitalSearch extends AppCompatActivity {
-    Spinner locations;
-    Spinner suburbs;
-    Button buttonSearch;
-    Button reminder;
-    Hospital hospital;
-    AutoCompleteTextView textSearch;
-    String selectedRegion;
+    private Spinner locations;
+    private Spinner suburbs;
+    private Button buttonSearch;
+    private Button reminder;
+    private Hospital hospital;
+    private AutoCompleteTextView textSearch;
+    private String selectedRegion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

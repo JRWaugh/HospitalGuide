@@ -56,7 +56,7 @@ public class ActivityRemindersList extends AppCompatActivity {
             super(context, textViewResourceId);
         }
 
-        public myCustomAdapter(Context context, int resource, List<Hospital> hc) {
+        myCustomAdapter(Context context, int resource, List<Hospital> hc) {
             super(context, resource, hc);
         }
 
