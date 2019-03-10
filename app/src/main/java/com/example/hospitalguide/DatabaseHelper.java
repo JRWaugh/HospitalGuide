@@ -63,9 +63,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void createDatabase() {
-
         boolean dbExist = checkDataBase();
-
         if(!dbExist){
             /*By calling this method, an empty database will be created into the default system path
             of your application so we are gonna be able to overwrite that database with our database.*/
@@ -132,10 +130,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     
     public ArrayList<String> getRegions(String selectedCity) {
+        //We first add the results to a set, because a set does not include duplicates.
         HashSet<String> regionsSet = new HashSet<>();
         ArrayList<String> regions = new ArrayList<>();
         String selectQuery = "SELECT " + KEY_REGION + " FROM " + currentTable + " WHERE " + KEY_CITY + " = '" + selectedCity + "'";
-        //e.g. "Select regions from the table where the description contains a specific city
         SQLiteDatabase db = this.getReadableDatabase();
 
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -147,12 +145,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
 
         db.close();
+        //The entirety of the set is added into a standard ArrayList that will be used by the regions spinner adapter.
         regions.addAll(regionsSet);
         Collections.sort(regions, String.CASE_INSENSITIVE_ORDER);
         return regions;
     }
 
     public ArrayList<Integer> getIDsByRegion(String selectedRegion) {
+        //This method takes a region input and produces a list of health centre IDs associated with that region.
         ArrayList<Integer> idList = new ArrayList<>();
         String selectQuery = "SELECT " + KEY_ID + " FROM " + currentTable + " WHERE " + KEY_REGION + " = '" + selectedRegion + "'";
         SQLiteDatabase db = this.getReadableDatabase();
@@ -169,6 +169,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public ArrayList<Hospital> getAllTerveysasemat(){
+        //This method pulls all health centres from the table associated with the current language.
         ArrayList<Hospital> hospitalList = new ArrayList<>();
         String selectQuery = "SELECT " + KEY_ID + ", " + KEY_NAME + " FROM " + currentTable;
         SQLiteDatabase db = this.getReadableDatabase();
@@ -188,6 +189,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public Hospital getTerveysasema(int id) {
+        //Pulls a specific health centre based on its ID.
         Hospital hospital = new Hospital();
         SQLiteDatabase db = this.getReadableDatabase();
         String selectQuery = "SELECT " + KEY_ID + ", " + KEY_NAME + ", " + KEY_ADDRESS + ", " + KEY_PHONE + ", " + KEY_WEBSITE + ", " + KEY_APPOINTMENT + " FROM " + this.currentTable + " WHERE " + KEY_ID + " = " + id;
@@ -207,6 +209,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public void setReminder(int id, String date){
+        //Adds a reminder to a specific health centre in each table.
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_APPOINTMENT, date);
@@ -217,6 +220,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public ArrayList<Hospital> getReminders() throws ParseException {
+        //Generates a list of hospital which have reminders.
+        //updateReminders is called first to delete any reminders which have expired.
         updateReminders();
         ArrayList<Hospital> reminders = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
@@ -237,6 +242,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     private void updateReminders() throws ParseException {
+        //Deletes any reminders which have expired.
         SQLiteDatabase db = this.getReadableDatabase();
         String selectQuery = "SELECT " + KEY_ID + ", " + KEY_APPOINTMENT + " FROM " + this.currentTable + " WHERE " + KEY_APPOINTMENT + " IS NOT NULL";
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -248,6 +254,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 sdf.setTimeZone(TimeZone.getTimeZone("GMT+2"));
                 date.setSeconds(59);
                 if (date.before(new Date())) {
+                    //reminder is deleted by using setReminder() method with a null date.
                     setReminder(cursor.getInt(cursor.getColumnIndex(KEY_ID)), null);
                 }
             } while (cursor.moveToNext());
