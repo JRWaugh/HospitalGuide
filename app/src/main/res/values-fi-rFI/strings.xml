@@ -29,4 +29,5 @@
     <string name="tvSetReminder">Sinun muistutus</string>
     <string name="confirmCancel">Peruuta tämä muistutus?</string>
     <string name="invalid">Virheellinen päivämäärä</string>
+    <string name="kauniainen">Grankulla</string>
 </resources>
