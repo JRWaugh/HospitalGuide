@@ -61,10 +61,11 @@
         android:id="@+id/btnWebsite"
         android:layout_width="119dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="68dp"
         android:background="@color/colorPrimary"
         android:onClick="openLink"
         android:text="@string/website"
+        android:textColor="@android:color/background_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvPhone" />
@@ -77,6 +78,7 @@
         android:background="@color/colorPrimary"
         android:onClick="setReminder"
         android:text="@string/reminder"
+        android:textColor="@android:color/background_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnWebsite" />

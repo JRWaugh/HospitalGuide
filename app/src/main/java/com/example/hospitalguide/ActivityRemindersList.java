@@ -75,5 +75,6 @@ public class ActivityRemindersList extends AppCompatActivity {
             }
             return view;
         }
+
     }
 }
