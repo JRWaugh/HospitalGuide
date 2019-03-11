@@ -95,5 +95,6 @@ public class BannerFragment extends Fragment {
             getActivity().finish();
             startActivity(getActivity().getIntent());
         }
+
     }
 }
