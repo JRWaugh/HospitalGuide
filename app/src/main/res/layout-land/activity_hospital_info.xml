@@ -61,29 +61,29 @@
         android:id="@+id/btnWebsite"
         android:layout_width="129dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginBottom="8dp"
         android:background="@color/colorPrimary"
         android:onClick="openLink"
         android:text="@string/website"
         android:textColor="@android:color/background_light"
+        app:layout_constraintBottom_toTopOf="@+id/layoutReminder"
         app:layout_constraintEnd_toStartOf="@+id/btnReminder"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvPhone" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/btnReminder"
         android:layout_width="129dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginBottom="8dp"
         android:background="@color/colorPrimary"
         android:onClick="setReminder"
         android:text="@string/reminder"
         android:textColor="@android:color/background_light"
+        app:layout_constraintBottom_toTopOf="@+id/layoutReminder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnWebsite"
-        app:layout_constraintTop_toBottomOf="@+id/tvPhone" />
+        app:layout_constraintStart_toEndOf="@+id/btnWebsite" />
 
     <LinearLayout
         android:id="@+id/layoutReminder"
@@ -94,7 +94,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="8dp"
         android:orientation="vertical"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
