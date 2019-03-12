@@ -24,14 +24,15 @@
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="80dp"
         android:background="@color/colorPrimary"
         android:text="@string/appointments"
         android:textColor="@android:color/background_light"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spRegions"
+        app:layout_constraintVertical_bias="0.79" />
 
     <Spinner
         android:id="@+id/spRegions"
@@ -97,14 +98,15 @@
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="32dp"
         android:background="@color/colorPrimary"
         android:text="@string/search"
         android:textColor="@android:color/background_light"
         app:layout_constraintBottom_toTopOf="@+id/btnReminder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spRegions"
+        app:layout_constraintVertical_bias="0.65999997" />
 
     <AutoCompleteTextView
         android:id="@+id/actSearch"
