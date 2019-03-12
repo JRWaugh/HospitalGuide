@@ -42,7 +42,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static String DATABASE_PATH = "";
     private static final String DATABASE_NAME = "healthcentres.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     public static synchronized DatabaseHelper getInstance(Context context) {
         if (dbHelper == null) {

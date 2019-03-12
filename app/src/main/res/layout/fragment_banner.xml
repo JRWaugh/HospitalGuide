@@ -5,8 +5,8 @@
     android:layout_height="wrap_content"
     android:background="@color/colorPrimary"
     android:orientation="horizontal"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp">
+    android:paddingLeft="24dp"
+    android:paddingRight="24dp">
 
     <ImageButton
         android:id="@+id/btnHome"
@@ -27,7 +27,7 @@
             android:id="@+id/tvEnglish"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginRight="16dp"
+            android:layout_marginRight="24dp"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center_vertical"
@@ -40,7 +40,7 @@
             android:id="@+id/tvSwedish"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_marginRight="16dp"
+            android:layout_marginRight="24dp"
             android:clickable="true"
             android:focusable="true"
             android:gravity="center_vertical"
