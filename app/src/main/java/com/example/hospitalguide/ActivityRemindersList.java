@@ -27,15 +27,16 @@ public class ActivityRemindersList extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_reminders_list);
     }
     @Override
-    public void onCreateContextMenu(ContextMenu menu, View v,
-           ContextMenu.ContextMenuInfo menuInfo) {
-                super.onCreateContextMenu(menu, v, menuInfo);
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //load the file of menu that you created
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
 
-                getMenuInflater().inflate(R.menu.main, menu);
-        }
 
 
         @Override
