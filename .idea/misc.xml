@@ -2,7 +2,6 @@
 <project version="4">
   <component name="JavadocGenerationManager">
     <option name="OUTPUT_DIRECTORY" value="C:/testjavadoc" />
-    <option name="OTHER_OPTIONS" value="-docletpath &quot;C:/Users/User/Downloads/yworks-uml-doclet-3.1-jdk1.8/lib/ydoc.jar&quot; -doclet ydoc.doclets.YStandard -resourcepath &quot;C:/Users/User/Downloads/yworks-uml-doclet-3.1-jdk1.8/resources&quot;" />
   </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="org.jetbrains.annotations.Nullable" />
