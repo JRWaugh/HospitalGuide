@@ -4,12 +4,9 @@
     <string name="helsinki">Helsinki</string>
     <string name="vantaa">Vantaa</string>
     <string name="espoo">Espoo</string>
-    <string name="kauniainen">Kauniainen</string>
     <string name="enterRegion">Select Region:</string>
     <string name="enterCity">Select City:</string>
     <string name="search">Search</string>
-    <string name="newReminder">new Reminder</string>
-    <string name="deleteReminder">delete Reminder</string>
     <string name="sv">sv</string>
     <string name="fi">fi</string>
     <string name="en">en</string>
@@ -19,7 +16,6 @@
         <item>@string/helsinki</item>
         <item>@string/vantaa</item>
         <item>@string/espoo</item>
-        <item>@string/kauniainen</item>
     </string-array>
     <string name="address">"Address: "</string>
     <string name="hintSearch">Search health centres</string>
@@ -37,4 +33,5 @@
     <string name="tvSetReminder">Your reminder:</string>
     <string name="confirmCancel">Cancel this reminder?</string>
     <string name="invalid">Invalid Date</string>
+    <string name="kauniainen">Kauniainen</string>
 </resources>

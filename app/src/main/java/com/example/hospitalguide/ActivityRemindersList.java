@@ -4,19 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import java.text.ParseException;
 import java.util.List;
 
@@ -27,34 +21,8 @@ public class ActivityRemindersList extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_reminders_list);
     }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //load the file of menu that you created
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-
-
-        @Override
-     public boolean onContextItemSelected(MenuItem item) {
-              switch (item.getItemId()) {
-                  case R.id.edit:
-                             Toast.makeText(this, "edit", Toast.LENGTH_SHORT).show();
-                           break;
-
-                     case R.id.delete:
-                           Toast.makeText(this, "delete", Toast.LENGTH_SHORT).show();
-                           break;
-
-                   default:
-                         break;
-                   }
-                return super.onContextItemSelected(item);
-           }
 
     @Override
     protected void onResume() {
@@ -107,8 +75,5 @@ public class ActivityRemindersList extends AppCompatActivity {
             }
             return view;
         }
-
     }
-
-
 }
