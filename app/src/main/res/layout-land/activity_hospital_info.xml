@@ -34,7 +34,7 @@
         android:id="@+id/tvAddress"
         android:layout_width="wrap_content"
         android:layout_height="25dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="@string/address"
         android:textSize="18sp"
@@ -48,7 +48,7 @@
         android:id="@+id/tvPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="12dp"
         android:gravity="center"
         android:text="@string/phone"
         android:textSize="18sp"
@@ -61,7 +61,7 @@
         android:id="@+id/btnWebsite"
         android:layout_width="129dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="12dp"
         android:background="@color/colorPrimary"
         android:onClick="openLink"
         android:text="@string/website"
@@ -75,7 +75,7 @@
         android:id="@+id/btnReminder"
         android:layout_width="129dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="12dp"
         android:background="@color/colorPrimary"
         android:onClick="setReminder"
         android:text="@string/reminder"
@@ -146,10 +146,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:background="@color/colorPrimary"
                 android:onClick="cancelReminder"
-                android:text="@string/cancel" />
+                android:text="@string/cancel"
+                android:textColor="@android:color/background_light" />
         </LinearLayout>
     </LinearLayout>
-    />
+
 
 </android.support.constraint.ConstraintLayout>

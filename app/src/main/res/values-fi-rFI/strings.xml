@@ -8,6 +8,8 @@
     <string name="enterRegion">Valitse seutu:</string>
     <string name="enterCity">Valitse kaupunki:</string>
     <string name="search">Hae</string>
+    <string name="newReminder">uusi Muistutus</string>
+    <string name="deleteReminder">poista muistutus</string>
     <string name="sv">sv</string>
     <string name="fi">fi</string>
     <string name="en">en</string>

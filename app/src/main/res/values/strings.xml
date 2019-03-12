@@ -8,6 +8,8 @@
     <string name="enterRegion">Select Region:</string>
     <string name="enterCity">Select City:</string>
     <string name="search">Search</string>
+    <string name="newReminder">new Reminder</string>
+    <string name="deleteReminder">delete Reminder</string>
     <string name="sv">sv</string>
     <string name="fi">fi</string>
     <string name="en">en</string>
