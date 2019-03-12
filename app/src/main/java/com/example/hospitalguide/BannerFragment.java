@@ -39,8 +39,8 @@ public class BannerFragment extends Fragment {
         DatabaseHelper.getInstance(getContext()).setTable(res.getString(R.string.table));
 
         //Creates database (or opens database if already created)
-        DatabaseHelper.getInstance(getContext()).createDatabase();
 
+        DatabaseHelper.getInstance(getContext()).createDatabase();
         try {
             DatabaseHelper.getInstance(getContext()).openDataBase();
         } catch(SQLException sqle){
