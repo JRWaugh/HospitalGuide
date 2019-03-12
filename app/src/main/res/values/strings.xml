@@ -16,6 +16,7 @@
         <item>@string/helsinki</item>
         <item>@string/vantaa</item>
         <item>@string/espoo</item>
+        <item>@string/kauniainen</item>
     </string-array>
     <string name="address">"Address: "</string>
     <string name="hintSearch">Search health centres</string>
