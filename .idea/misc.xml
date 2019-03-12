@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="JavadocGenerationManager">
+    <option name="OUTPUT_DIRECTORY" value="C:/testjavadoc" />
+    <option name="OTHER_OPTIONS" value="-docletpath &quot;C:/Users/User/Downloads/yworks-uml-doclet-3.1-jdk1.8/lib/ydoc.jar&quot; -doclet ydoc.doclets.YStandard -resourcepath &quot;C:/Users/User/Downloads/yworks-uml-doclet-3.1-jdk1.8/resources&quot;" />
+  </component>
   <component name="NullableNotNullManager">
     <option name="myDefaultNullable" value="org.jetbrains.annotations.Nullable" />
     <option name="myDefaultNotNull" value="androidx.annotation.RecentlyNonNull" />
@@ -35,5 +39,7 @@
       </value>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
 </project>
